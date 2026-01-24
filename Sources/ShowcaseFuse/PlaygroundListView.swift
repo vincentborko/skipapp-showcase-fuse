@@ -6,12 +6,14 @@ enum PlaygroundType: CaseIterable, View {
     case accessibility
     case alert
     case animation
+    case contentTransitions
 //    case audio
     case background
     case blendMode
     case blur
     case border
     case button
+    case canvas
     case color
     case colorEffects
     case colorScheme
@@ -99,6 +101,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("Alert", comment: "Title of Alert playground")
         case .animation:
             return LocalizedStringResource("Animation", comment: "Title of Animation playground")
+        case .contentTransitions:
+            return LocalizedStringResource("Content Transitions", comment: "Title of Content Transitions playground")
 //        case .audio:
 //            return LocalizedStringResource("Audio")
         case .background:
@@ -111,6 +115,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("Border", comment: "Title of Border playground")
         case .button:
             return LocalizedStringResource("Button", comment: "Title of Button playground")
+        case .canvas:
+            return LocalizedStringResource("Canvas", comment: "Title of Canvas playground")
         case .color:
             return LocalizedStringResource("Color", comment: "Title of Color playground")
         case .colorEffects:
@@ -278,6 +284,8 @@ enum PlaygroundType: CaseIterable, View {
             AlertPlayground()
         case .animation:
             AnimationPlayground()
+        case .contentTransitions:
+            ContentTransitionsPlayground()
 //        case .audio:
 //            AudioPlayground()
         case .background:
@@ -290,6 +298,8 @@ enum PlaygroundType: CaseIterable, View {
             BorderPlayground()
         case .button:
             ButtonPlayground()
+        case .canvas:
+            CanvasPlayground()
         case .color:
             ColorPlayground()
         case .colorEffects:
