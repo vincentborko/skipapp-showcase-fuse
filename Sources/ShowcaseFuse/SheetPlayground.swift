@@ -9,6 +9,7 @@ struct SheetPlayground: View {
     @State var isSheetPresented = false
     @State var isSimpleSheetPresented = false
     @State var isDetentSheetPresented = false
+    @State var isPresentationModifiersSheetPresented = false
     @State var isFullScreenPresented = false
     @State var isSimpleFullScreenPresented = false
     @State var item: Item? = nil
@@ -47,6 +48,9 @@ struct SheetPlayground: View {
             Button("Present sheet with medium detent") {
                 isDetentSheetPresented = true
             }
+            Button("Present sheet with presentation modifiers") {
+                isPresentationModifiersSheetPresented = true
+            }
             Button("Present item sheet: \(itemID + 1)") {
                 itemID += 1
                 item = Item(id: itemID)
@@ -82,6 +86,11 @@ struct SheetPlayground: View {
                 isDetentSheetPresented = false
             }
             .presentationDetents([.medium])
+        })
+        .sheet(isPresented: $isPresentationModifiersSheetPresented, content: {
+            PresentationModifiersSheetContent {
+                isPresentationModifiersSheetPresented = false
+            }
         })
         .fullScreenCover(isPresented: $isFullScreenPresented) {
             SheetContentView(dismissSheet: { isFullScreenPresented = false })
@@ -138,6 +147,78 @@ struct SheetContentView: View {
         .sheet(isPresented: $isPresented) {
             SheetContentView(dismissSheet: { isPresented = false })
         }
+    }
+}
+
+struct PresentationModifiersSheetContent: View {
+    @State private var selectedDetent: DetentOption = .fraction75
+    @State private var dragIndicatorVisible = true
+    @State private var customCornerRadius: CGFloat = 16.0
+    @State private var useCustomCornerRadius = false
+    let dismissSheet: () -> Void
+
+    enum DetentOption: String, CaseIterable {
+        case medium = "Medium"
+        case large = "Large" 
+        case fraction75 = "75% Fraction"
+        case height300 = "300pt Height"
+        
+        var presentationDetent: PresentationDetent {
+            switch self {
+            case .medium: return .medium
+            case .large: return .large
+            case .fraction75: return .fraction(0.75)
+            case .height300: return .height(300)
+            }
+        }
+    }
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section("Presentation Detents") {
+                    Picker("Detent", selection: $selectedDetent) {
+                        ForEach(DetentOption.allCases, id: \.self) { option in
+                            Text(option.rawValue).tag(option)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                }
+                
+                Section("Drag Indicator") {
+                    Toggle("Show Drag Indicator", isOn: $dragIndicatorVisible)
+                }
+                
+                Section("Corner Radius") {
+                    Toggle("Use Custom Corner Radius", isOn: $useCustomCornerRadius)
+                    if useCustomCornerRadius {
+                        VStack {
+                            HStack {
+                                Text("Corner Radius: \(Int(customCornerRadius))pt")
+                                Spacer()
+                            }
+                            Slider(value: $customCornerRadius, in: 0...50, step: 1)
+                        }
+                    }
+                }
+                
+                Section("Actions") {
+                    Button("Dismiss Sheet") {
+                        dismissSheet()
+                    }
+                }
+                
+                ForEach(1...20, id: \.self) { index in
+                    Text("Content Row \(index)")
+                        .padding(.vertical, 4)
+                }
+            }
+            .navigationTitle("Presentation Modifiers")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        .presentationDetents([selectedDetent.presentationDetent])
+        .presentationDragIndicator(dragIndicatorVisible ? .visible : .hidden)
+        .presentationCornerRadius(useCustomCornerRadius ? customCornerRadius : nil)
     }
 }
 
