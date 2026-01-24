@@ -22,6 +22,8 @@ enum ListPlaygroundType: String, CaseIterable {
     case onMoveDelete
     case positioned
     case badges
+    case singleSelection
+    case multiSelection
 
     var title: String {
         switch self {
@@ -65,6 +67,10 @@ enum ListPlaygroundType: String, CaseIterable {
             return "Positioned"
         case .badges:
             return "Badges"
+        case .singleSelection:
+            return "Single Selection"
+        case .multiSelection:
+            return "Multi Selection"
         }
     }
 }
@@ -142,6 +148,12 @@ struct ListPlayground: View {
                     .navigationTitle($0.title)
             case .badges:
                 BadgeListPlayground()
+                    .navigationTitle($0.title)
+            case .singleSelection:
+                SingleSelectionListPlayground()
+                    .navigationTitle($0.title)
+            case .multiSelection:
+                MultiSelectionListPlayground()
                     .navigationTitle($0.title)
             }
         }
@@ -749,6 +761,128 @@ struct BadgeListPlayground: View {
                     Text("Spam")
                 }
                 .badge("99+")
+            }
+        }
+    }
+}
+
+struct SingleSelectionListPlayground: View {
+    struct ListItem: Identifiable, Hashable {
+        let id = UUID()
+        let title: String
+        let description: String
+        
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            return lhs.id == rhs.id
+        }
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
+    }
+    
+    let items = [
+        ListItem(title: "Item 1", description: "First item in the list"),
+        ListItem(title: "Item 2", description: "Second item in the list"),
+        ListItem(title: "Item 3", description: "Third item in the list"),
+        ListItem(title: "Item 4", description: "Fourth item in the list"),
+        ListItem(title: "Item 5", description: "Fifth item in the list"),
+        ListItem(title: "Item 6", description: "Sixth item in the list"),
+        ListItem(title: "Item 7", description: "Seventh item in the list"),
+        ListItem(title: "Item 8", description: "Eighth item in the list"),
+        ListItem(title: "Item 9", description: "Ninth item in the list"),
+        ListItem(title: "Item 10", description: "Tenth item in the list")
+    ]
+    
+    @State private var selectedItem: ListItem? = nil
+    
+    var body: some View {
+        VStack {
+            Text("Selected: \(selectedItem?.title ?? "None")")
+                .font(.headline)
+                .padding()
+            
+            List(items, selection: $selectedItem) { item in
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(item.title)
+                        .font(.headline)
+                    Text(item.description)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                .padding(.vertical, 2)
+            }
+        }
+    }
+}
+
+struct MultiSelectionListPlayground: View {
+    struct ListItem: Identifiable, Hashable {
+        let id = UUID()
+        let title: String
+        let category: String
+        
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            return lhs.id == rhs.id
+        }
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
+    }
+    
+    let items = [
+        ListItem(title: "Apple", category: "Fruits"),
+        ListItem(title: "Banana", category: "Fruits"),
+        ListItem(title: "Orange", category: "Fruits"),
+        ListItem(title: "Carrot", category: "Vegetables"),
+        ListItem(title: "Broccoli", category: "Vegetables"),
+        ListItem(title: "Spinach", category: "Vegetables"),
+        ListItem(title: "Chicken", category: "Protein"),
+        ListItem(title: "Fish", category: "Protein"),
+        ListItem(title: "Beef", category: "Protein"),
+        ListItem(title: "Rice", category: "Grains")
+    ]
+    
+    @State private var selectedItems: Set<ListItem> = []
+    @State private var editMode: EditMode = .inactive
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text("Selected: \(selectedItems.count) item(s)")
+                    .font(.headline)
+                Spacer()
+                if !selectedItems.isEmpty {
+                    Button("Clear Selection") {
+                        selectedItems.removeAll()
+                    }
+                }
+            }
+            .padding()
+            
+            List(items, selection: $selectedItems) { item in
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(item.title)
+                            .font(.headline)
+                        Text(item.category)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer()
+                    if selectedItems.contains(item) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.blue)
+                    }
+                }
+                .padding(.vertical, 2)
+            }
+            .environment(\.editMode, $editMode)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
             }
         }
     }
