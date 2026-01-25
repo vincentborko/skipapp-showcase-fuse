@@ -79,7 +79,12 @@ struct AdvancedGesturesPlayground: View {
                         .gesture(
                             RotateGesture()
                                 .onChanged { value in
+                                    #if SKIP || SKIP_BRIDGE
+                                    // Skip doesn't support Angle arithmetic directly
+                                    rotation = Angle(degrees: lastRotation.degrees + value.rotation.degrees)
+                                    #else
                                     rotation = lastRotation + value.rotation
+                                    #endif
                                 }
                                 .onEnded { value in
                                     lastRotation = rotation
@@ -125,7 +130,11 @@ struct AdvancedGesturesPlayground: View {
                                         combinedScale = lastCombinedScale * magnify.magnification
                                     }
                                     if let rotate = value.second {
+                                        #if SKIP || SKIP_BRIDGE
+                                        combinedRotation = Angle(degrees: lastCombinedRotation.degrees + rotate.rotation.degrees)
+                                        #else
                                         combinedRotation = lastCombinedRotation + rotate.rotation
+                                        #endif
                                     }
                                 }
                                 .onEnded { value in
@@ -182,7 +191,7 @@ struct AdvancedGesturesPlayground: View {
                                     .onEnded { value in
                                         isDragging = false
                                         // Could add physics-based animation using velocity
-                                        withAnimation(.spring()) {
+                                        withAnimation(.easeOut(duration: 0.3)) {
                                             dragOffset = .zero
                                         }
                                     }
@@ -245,7 +254,7 @@ struct AdvancedGesturesPlayground: View {
     }
 }
 
-#if !SKIP
+#if !SKIP && !SKIP_BRIDGE
 struct AdvancedGesturesPlayground_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {

@@ -23,13 +23,27 @@ struct BindablePlayground: View {
             ScrollView {
                 VStack(spacing: 20) {
                     // Display current settings
+                    #if !SKIP && !SKIP_BRIDGE
                     GroupBox("Current Settings") {
                         Text(settings.description)
                             .font(.system(.body, design: .monospaced))
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
+                    #else
+                    VStack(alignment: .leading) {
+                        Text("Current Settings")
+                            .font(.headline)
+                        Text(settings.description)
+                            .font(.system(.body, design: .monospaced))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding()
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(8)
+                    #endif
                     
                     // Direct editing with @Bindable in the same view
+                    #if !SKIP && !SKIP_BRIDGE
                     GroupBox("Direct Editing") {
                         VStack(alignment: .leading, spacing: 15) {
                             // Create @Bindable for binding support
@@ -56,16 +70,71 @@ struct BindablePlayground: View {
                             .pickerStyle(.segmented)
                         }
                     }
+                    #else
+                    VStack(alignment: .leading) {
+                        Text("Direct Editing")
+                            .font(.headline)
+                        VStack(alignment: .leading, spacing: 15) {
+                            // Create @Bindable for binding support
+                            @Bindable var bindableSettings = settings
+                            
+                            HStack {
+                                Text("Username:")
+                                TextField("Enter username", text: $bindableSettings.username)
+                                    .textFieldStyle(.roundedBorder)
+                            }
+                            
+                            Toggle("Enable Notifications", isOn: $bindableSettings.isNotificationsEnabled)
+                            
+                            VStack(alignment: .leading) {
+                                Text("Volume: \(Int(bindableSettings.volume))%")
+                                Slider(value: $bindableSettings.volume, in: 0...100, step: 5)
+                            }
+                            
+                            Picker("Theme", selection: $bindableSettings.selectedTheme) {
+                                Text("Light").tag("Light")
+                                Text("Dark").tag("Dark")
+                                Text("Auto").tag("Auto")
+                            }
+                            .pickerStyle(.segmented)
+                        }
+                    }
+                    .padding()
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(8)
+                    #endif
                     
                     // Child view that receives the model
+                    #if !SKIP && !SKIP_BRIDGE
                     GroupBox("Child View Editing") {
                         SettingsEditView(settings: settings)
                     }
+                    #else
+                    VStack(alignment: .leading) {
+                        Text("Child View Editing")
+                            .font(.headline)
+                        SettingsEditView(settings: settings)
+                    }
+                    .padding()
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(8)
+                    #endif
                     
                     // Another child view showing read-only data
+                    #if !SKIP && !SKIP_BRIDGE
                     GroupBox("Read-Only Display") {
                         SettingsDisplayView(settings: settings)
                     }
+                    #else
+                    VStack(alignment: .leading) {
+                        Text("Read-Only Display")
+                            .font(.headline)
+                        SettingsDisplayView(settings: settings)
+                    }
+                    .padding()
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(8)
+                    #endif
                     
                     // Reset button
                     Button(action: {
@@ -132,7 +201,7 @@ struct SettingsDisplayView: View {
     }
 }
 
-#if !SKIP
+#if !SKIP && !SKIP_BRIDGE
 struct BindablePlayground_Previews: PreviewProvider {
     static var previews: some View {
         BindablePlayground()

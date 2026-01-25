@@ -223,7 +223,7 @@ struct PresentationModifiersSheetContent: View {
             #endif
         }
         .presentationDetents([selectedDetent.presentationDetent])
-        #if !SKIP
+        #if !SKIP && !SKIP_BRIDGE
         .presentationDragIndicator(dragIndicatorVisible ? .visible : .hidden)
         .presentationCornerRadius(useCustomCornerRadius ? customCornerRadius : nil)
         #endif

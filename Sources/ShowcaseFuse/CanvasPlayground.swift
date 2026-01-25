@@ -5,7 +5,7 @@ struct CanvasPlayground: View {
     @State var animationPhase: Double = 0.0
 
     var body: some View {
-        #if !SKIP
+        #if !SKIP && !SKIP_BRIDGE
         // Canvas is temporarily disabled for Skip due to transpilation issues
         ScrollView {
             VStack(spacing: 20) {

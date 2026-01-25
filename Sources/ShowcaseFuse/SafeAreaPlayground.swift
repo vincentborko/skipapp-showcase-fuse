@@ -282,7 +282,7 @@ struct SafeAreaInsetBottomView: View {
                     }
                 }
             }
-            #if !SKIP
+            #if !SKIP && !SKIP_BRIDGE
             .safeAreaInset(edge: .bottom) {
                 HStack {
                     Button(action: {}) {
@@ -348,7 +348,7 @@ struct SafeAreaInsetTopView: View {
                     }
                 }
             }
-            #if !SKIP
+            #if !SKIP && !SKIP_BRIDGE
             .safeAreaInset(edge: .top) {
                 HStack {
                     Image(systemName: "bell.fill")
@@ -407,7 +407,7 @@ struct SafeAreaInsetLeadingView: View {
                     }
                 }
             }
-            #if !SKIP
+            #if !SKIP && !SKIP_BRIDGE
             .safeAreaInset(edge: .leading, alignment: .center, spacing: 8) {
                 VStack(spacing: 12) {
                     ForEach(0..<5) { index in
@@ -467,7 +467,7 @@ struct SafeAreaInsetTrailingView: View {
                     }
                 }
             }
-            #if !SKIP
+            #if !SKIP && !SKIP_BRIDGE
             .safeAreaInset(edge: .trailing) {
                 VStack(spacing: 8) {
                     Text("Quick")
@@ -538,7 +538,7 @@ struct SafeAreaInsetMultipleView: View {
                     }
                 }
             }
-            #if !SKIP
+            #if !SKIP && !SKIP_BRIDGE
             .safeAreaInset(edge: .top, spacing: 8) {
                 Text("🔔 You have 3 new messages")
                     .padding()

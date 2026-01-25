@@ -882,7 +882,7 @@ struct MultiSelectionListPlayground: View {
                 }
                 .padding(.vertical, 2)
             }
-            #if !os(macOS) && !SKIP
+            #if !os(macOS) && !SKIP && !SKIP_BRIDGE
             .environment(\.editMode, $editMode)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

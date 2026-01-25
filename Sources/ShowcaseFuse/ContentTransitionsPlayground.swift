@@ -28,10 +28,8 @@ struct ContentTransitionsPlayground: View {
                         }
                         Spacer()
                         Text(isToggled ? "ON" : "OFF")
-                            #if !SKIP
-                            #if !SKIP
+                            #if !SKIP && !SKIP_BRIDGE
                             .contentTransition(.identity)
-                            #endif
                             #endif
                             .font(.title2)
                             .bold()
@@ -59,10 +57,8 @@ struct ContentTransitionsPlayground: View {
                         }
                         Spacer()
                         Text(favoriteFruit)
-                            #if !SKIP
-                            #if !SKIP
+                            #if !SKIP && !SKIP_BRIDGE
                             .contentTransition(.opacity)
-                            #endif
                             #endif
                             .font(.title2)
                             .bold()
@@ -88,10 +84,8 @@ struct ContentTransitionsPlayground: View {
                         }
                         Spacer()
                         Text(isToggled ? "Show Less" : "Show More")
-                            #if !SKIP
-                            #if !SKIP
+                            #if !SKIP && !SKIP_BRIDGE
                             .contentTransition(.interpolate)
-                            #endif
                             #endif
                             .font(.title2)
                             .bold()
@@ -123,17 +117,13 @@ struct ContentTransitionsPlayground: View {
                             }
                             Spacer()
                             Text("\\(count)")
-                                #if !SKIP
-                                #if !SKIP
+                                #if !SKIP && !SKIP_BRIDGE
                                 .contentTransition(.numericText())
-                                #endif
                                 #endif
                                 .font(.largeTitle)
                                 .bold()
-                                #if !SKIP
-                            #if !SKIP
+                                #if !SKIP && !SKIP_BRIDGE
                             .monospacedDigit()
-                            #endif
                             #endif
                             Spacer()
                             Button("+1") {
@@ -157,17 +147,13 @@ struct ContentTransitionsPlayground: View {
                             }
                             Spacer()
                             Text("Score: \\(score)")
-                                #if !SKIP
-                                #if !SKIP
+                                #if !SKIP && !SKIP_BRIDGE
                                 .contentTransition(.numericText(countsDown: false))
-                                #endif
                                 #endif
                                 .font(.title2)
                                 .bold()
-                                #if !SKIP
-                            #if !SKIP
+                                #if !SKIP && !SKIP_BRIDGE
                             .monospacedDigit()
-                            #endif
                             #endif
                         }
                     }
@@ -186,21 +172,17 @@ struct ContentTransitionsPlayground: View {
                     
                     VStack(spacing: 12) {
                         Text("\\(count)")
-                            #if !SKIP
+                            #if !SKIP && !SKIP_BRIDGE
                             .contentTransition(.numericText())
                             #endif
                             .font(.system(size: 48, weight: .bold, design: .rounded))
-                            #if !SKIP
-                            #if !SKIP
+                            #if !SKIP && !SKIP_BRIDGE
                             .monospacedDigit()
-                            #endif
                             #endif
                         
                         Text(count == 0 ? "Zero" : count == 1 ? "One" : count < 10 ? "Single Digit" : count < 100 ? "Double Digit" : "Triple Digit")
-                            #if !SKIP
-                            #if !SKIP
+                            #if !SKIP && !SKIP_BRIDGE
                             .contentTransition(.interpolate)
-                            #endif
                             #endif
                             .font(.headline)
                             .foregroundColor(.secondary)

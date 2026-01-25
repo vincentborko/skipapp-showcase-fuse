@@ -353,12 +353,14 @@ struct CustomToolbarItemPlayground: View {
             }
         }
         .toolbar {
-            Ellipse()
-                .fill(.red.gradient)
-                .frame(width: 100, height: 50)
-                .onTapGesture {
-                    dismiss()
-                }
+            ToolbarItem {
+                Ellipse()
+                    .fill(.red.gradient)
+                    .frame(width: 100, height: 50)
+                    .onTapGesture {
+                        dismiss()
+                    }
+            }
         }
     }
 }
