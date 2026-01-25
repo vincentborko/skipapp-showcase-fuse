@@ -113,7 +113,7 @@ struct SheetPlayground: View {
                     isCustomCornerRadiusPresented = false
                 }
             }
-            .presentationCornerRadius(30)
+            .presentationCornerRadius(100)
         })
         .fullScreenCover(isPresented: $isFullScreenPresented) {
             SheetContentView(dismissSheet: { isFullScreenPresented = false })
