@@ -417,7 +417,8 @@ enum PlaygroundType: CaseIterable, View {
         case .spacer:
             SpacerPlayground()
         case .speech:
-            SpeechPlayground()
+            // SpeechPlayground() // Disabled - SkipSpeech module not available
+            Text("Speech playground disabled - SkipSpeech module not available")
         case .sql:
             SQLPlayground()
         case .stack:

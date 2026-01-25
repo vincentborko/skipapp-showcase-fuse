@@ -794,7 +794,7 @@ struct SingleSelectionListPlayground: View {
         ListItem(title: "Item 10", description: "Tenth item in the list")
     ]
     
-    @State private var selectedItem: ListItem? = nil
+    @State var selectedItem: ListItem? = nil
     
     var body: some View {
         VStack {
@@ -844,8 +844,8 @@ struct MultiSelectionListPlayground: View {
         ListItem(title: "Rice", category: "Grains")
     ]
     
-    @State private var selectedItems: Set<ListItem> = []
-    @State private var editMode: EditMode = .inactive
+    @State var selectedItems: Set<ListItem> = []
+    @State var editMode: EditMode = .inactive
     
     var body: some View {
         VStack {

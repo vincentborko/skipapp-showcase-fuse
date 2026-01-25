@@ -2,10 +2,10 @@
 import SwiftUI
 
 struct ContentTransitionsPlayground: View {
-    @State private var count = 0
-    @State private var isToggled = false
-    @State private var favoriteFruit = "Apple"
-    @State private var score = 50
+    @State var count = 0
+    @State var isToggled = false
+    @State var favoriteFruit = "Apple"
+    @State var score = 50
     
     private let fruits = ["Apple", "Banana", "Cherry", "Dragonfruit", "Elderberry"]
     

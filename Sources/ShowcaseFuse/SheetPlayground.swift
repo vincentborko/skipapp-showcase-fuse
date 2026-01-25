@@ -151,10 +151,10 @@ struct SheetContentView: View {
 }
 
 struct PresentationModifiersSheetContent: View {
-    @State private var selectedDetent: DetentOption = .fraction75
-    @State private var dragIndicatorVisible = true
-    @State private var customCornerRadius: CGFloat = 16.0
-    @State private var useCustomCornerRadius = false
+    @State var selectedDetent: DetentOption = .fraction75
+    @State var dragIndicatorVisible = true
+    @State var customCornerRadius: CGFloat = 16.0
+    @State var useCustomCornerRadius = false
     let dismissSheet: () -> Void
 
     enum DetentOption: String, CaseIterable {
