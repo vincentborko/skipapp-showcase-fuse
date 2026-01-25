@@ -34,7 +34,9 @@ struct NotificationPlayground: View {
                 TextField("Push Notification Client Token", text: $token)
                     .textFieldStyle(.roundedBorder)
                 Button("Copy") {
+                    #if !os(macOS)
                     UIPasteboard.general.string = token
+                    #endif
                 }
                 .buttonStyle(.automatic)
             }

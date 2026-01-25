@@ -845,7 +845,9 @@ struct MultiSelectionListPlayground: View {
     ]
     
     @State var selectedItems: Set<ListItem> = []
+    #if !os(macOS)
     @State var editMode: EditMode = .inactive
+    #endif
     
     var body: some View {
         VStack {
@@ -878,12 +880,14 @@ struct MultiSelectionListPlayground: View {
                 }
                 .padding(.vertical, 2)
             }
+            #if !os(macOS)
             .environment(\.editMode, $editMode)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
             }
+            #endif
         }
     }
 }

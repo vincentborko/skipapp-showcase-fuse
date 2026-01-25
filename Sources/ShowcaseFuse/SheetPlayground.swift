@@ -214,7 +214,9 @@ struct PresentationModifiersSheetContent: View {
                 }
             }
             .navigationTitle("Presentation Modifiers")
+            #if !os(macOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
         }
         .presentationDetents([selectedDetent.presentationDetent])
         .presentationDragIndicator(dragIndicatorVisible ? .visible : .hidden)
