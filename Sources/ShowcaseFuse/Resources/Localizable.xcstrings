@@ -2320,6 +2320,9 @@
     "Note: tint should not affect Label appearance" : {
 
     },
+    "Notice the larger corner radius (30pt)" : {
+
+    },
     "Notifications" : {
       "comment" : "Title of Notification playground"
     },
@@ -2573,6 +2576,12 @@
 
     },
     "Present item sheet: %lld" : {
+
+    },
+    "Present sheet with custom corner radius" : {
+
+    },
+    "Present sheet with hidden drag indicator" : {
 
     },
     "Present sheet with medium detent" : {
@@ -3011,6 +3020,12 @@
     },
     "Sheet" : {
       "comment" : "Title of Sheet playground"
+    },
+    "Sheet with custom corner radius" : {
+
+    },
+    "Sheet with hidden drag indicator" : {
+
     },
     "Short" : {
 
@@ -3510,6 +3525,9 @@
     },
     "TextField" : {
       "comment" : "Title of TextField playground"
+    },
+    "The drag indicator pill at the top is hidden" : {
+
     },
     "Thin footnote container" : {
 
