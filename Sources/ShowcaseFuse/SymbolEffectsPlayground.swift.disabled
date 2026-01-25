@@ -5,9 +5,6 @@ struct SymbolEffectsPlayground: View {
     @State var isBouncing = false
     @State var isPulsing = false
     @State var isColorVariating = false
-    @State var isBreathing = false
-    @State var isRotating = false
-    @State var isWiggling = false
     @State var likeCount = 0
     @State var scaleCount = 0
     @State var replaceIcon = false
@@ -61,63 +58,18 @@ struct SymbolEffectsPlayground: View {
                             Toggle("Variable Color", isOn: $isColorVariating)
                         }
                         .padding(.horizontal)
-                        
-                        Divider()
-                        
-                        // Breathe Effect
-                        HStack {
-                            Image(systemName: "moon.stars.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(.purple)
-                                .symbolEffect(.breathe, isActive: isBreathing)
-                            
-                            Spacer()
-                            
-                            Toggle("Breathe", isOn: $isBreathing)
-                        }
-                        .padding(.horizontal)
-                        
-                        Divider()
-                        
-                        // Rotate Effect
-                        HStack {
-                            Image(systemName: "gear")
-                                .font(.largeTitle)
-                                .foregroundColor(.orange)
-                                .symbolEffect(.rotate, isActive: isRotating)
-                            
-                            Spacer()
-                            
-                            Toggle("Rotate", isOn: $isRotating)
-                        }
-                        .padding(.horizontal)
-                        
-                        Divider()
-                        
-                        // Wiggle Effect
-                        HStack {
-                            Image(systemName: "bell.badge.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(.red)
-                                .symbolEffect(.wiggle, isActive: isWiggling)
-                            
-                            Spacer()
-                            
-                            Toggle("Wiggle", isOn: $isWiggling)
-                        }
-                        .padding(.horizontal)
                     }
                 }
                 .padding()
                 
-                // Discrete Effects Section
+                // Discrete Effects Section  
                 GroupBox("Discrete Effects") {
                     VStack(spacing: 20) {
                         // Bounce on Value Change
                         HStack {
-                            Image(systemName: "heart.fill")
+                            Image(systemName: likeCount > 0 ? "heart.fill" : "heart")
                                 .font(.largeTitle)
-                                .foregroundColor(.pink)
+                                .foregroundColor(.red)
                                 .symbolEffect(.bounce, value: likeCount)
                             
                             Spacer()
@@ -135,7 +87,7 @@ struct SymbolEffectsPlayground: View {
                         
                         Divider()
                         
-                        // Scale Effect
+                        // Pulse on Value Change
                         HStack {
                             Image(systemName: "star.fill")
                                 .font(.largeTitle)
@@ -144,48 +96,58 @@ struct SymbolEffectsPlayground: View {
                             
                             Spacer()
                             
-                            Button("Scale") {
+                            Button("Pulse") {
                                 scaleCount += 1
                             }
                             .buttonStyle(.borderedProminent)
+                            
+                            Text("\(scaleCount)")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
                         }
                         .padding(.horizontal)
-                        
-                        Divider()
-                        
-                        // Replace Effect
+                    }
+                }
+                .padding()
+                
+                // Replace Effect Section
+                GroupBox("Replace Effect") {
+                    VStack(spacing: 20) {
                         HStack {
-                            Image(systemName: replaceIcon ? "speaker.slash.fill" : "speaker.wave.2.fill")
+                            Image(systemName: replaceIcon ? "checkmark.circle.fill" : "xmark.circle.fill")
                                 .font(.largeTitle)
-                                .foregroundColor(.indigo)
-                                // Note: Replace effects may not work on all platforms
+                                .foregroundColor(replaceIcon ? .green : .red)
+                                .contentTransition(.symbolEffect(.replace))
                             
                             Spacer()
                             
-                            Button("Toggle Sound") {
-                                replaceIcon.toggle()
+                            Button("Replace") {
+                                withAnimation {
+                                    replaceIcon.toggle()
+                                }
                             }
                             .buttonStyle(.borderedProminent)
                         }
                         .padding(.horizontal)
-                        
-                        Divider()
-                        
+                    }
+                }
+                .padding()
+                
+                // Appear/Disappear Effects Section
+                GroupBox("Appear & Disappear Effects") {
+                    VStack(spacing: 20) {
                         // Appear Effect
                         HStack {
                             if appearIcon {
                                 Image(systemName: "sun.max.fill")
                                     .font(.largeTitle)
-                                    .foregroundColor(.orange)
+                                    .foregroundColor(.yellow)
                                     .symbolEffect(.appear, isActive: appearIcon)
-                            } else {
-                                Color.clear
-                                    .frame(width: 40, height: 40)
                             }
                             
                             Spacer()
                             
-                            Button("Toggle Appear") {
+                            Button("Appear") {
                                 appearIcon.toggle()
                             }
                             .buttonStyle(.borderedProminent)
@@ -247,13 +209,36 @@ struct SymbolEffectsPlayground: View {
                                 .foregroundColor(.purple)
                                 .symbolEffect(.bounce, options: .repeat(3), value: Date().timeIntervalSince1970)
                             
-                            Text("Repeats 3 times")
+                            Text("Repeat 3 times")
                                 .font(.caption)
                             
                             Spacer()
                         }
                         .padding(.horizontal)
                     }
+                }
+                .padding()
+                
+                // Information Section
+                GroupBox("About Symbol Effects") {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Symbol Effects provide animations for SF Symbols.")
+                            .font(.body)
+                        
+                        Text("Available effects include:")
+                            .font(.subheadline)
+                            .bold()
+                        
+                        VStack(alignment: .leading, spacing: 5) {
+                            Label("bounce - Bounce animation", systemImage: "arrow.up.and.down")
+                            Label("pulse - Pulsing animation", systemImage: "dot.radiowaves.left.and.right")
+                            Label("variableColor - Color animation", systemImage: "paintbrush.fill")
+                            Label("replace - Replace with animation", systemImage: "arrow.triangle.2.circlepath")
+                            Label("appear/disappear - Fade in/out", systemImage: "eye.slash")
+                        }
+                        .font(.caption)
+                    }
+                    .padding()
                 }
                 .padding()
             }
