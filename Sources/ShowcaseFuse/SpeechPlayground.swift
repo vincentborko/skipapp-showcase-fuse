@@ -1,6 +1,6 @@
 // Copyright 2025 Skip
 import SwiftUI
-import SkipSpeech
+// import SkipSpeech // Temporarily disabled - module not available
 
 /// This component uses the `SkipSpeech` module for cross-platform speech recognition
 struct SpeechPlayground: View {
