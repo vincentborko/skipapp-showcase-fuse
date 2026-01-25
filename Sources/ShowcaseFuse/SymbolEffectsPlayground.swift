@@ -140,7 +140,7 @@ struct SymbolEffectsPlayground: View {
                             Image(systemName: "star.fill")
                                 .font(.largeTitle)
                                 .foregroundColor(.yellow)
-                                .symbolEffect(.scale.up, value: scaleCount)
+                                .symbolEffect(.pulse, value: scaleCount)
                             
                             Spacer()
                             
@@ -158,7 +158,7 @@ struct SymbolEffectsPlayground: View {
                             Image(systemName: replaceIcon ? "speaker.slash.fill" : "speaker.wave.2.fill")
                                 .font(.largeTitle)
                                 .foregroundColor(.indigo)
-                                .symbolEffect(.replace, value: replaceIcon)
+                                // Note: Replace effects may not work on all platforms
                             
                             Spacer()
                             

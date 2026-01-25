@@ -1,6 +1,8 @@
 // Copyright 2023–2025 Skip
 import SwiftUI
 
+#if os(iOS) || os(tvOS) || os(visionOS) || SKIP
+
 enum SafeAreaPlaygroundType: String, CaseIterable {
     case fullscreenContent
     case fullscreenBackground
@@ -324,7 +326,9 @@ struct SafeAreaInsetTopView: View {
                 .padding(.vertical)
             }
             .navigationTitle("Top Inset Demo")
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Dismiss") {
@@ -523,3 +527,15 @@ struct SafeAreaInsetMultipleView: View {
         }
     }
 }
+
+#else
+
+// macOS stub
+struct SafeAreaPlayground: View {
+    var body: some View {
+        Text("SafeArea features are iOS-specific")
+            .padding()
+    }
+}
+
+#endif

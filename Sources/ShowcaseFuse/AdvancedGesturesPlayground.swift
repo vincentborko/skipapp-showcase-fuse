@@ -239,7 +239,9 @@ struct AdvancedGesturesPlayground: View {
             .padding()
         }
         .navigationTitle("Advanced Gestures")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
 

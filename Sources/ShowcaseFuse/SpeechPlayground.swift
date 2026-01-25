@@ -199,15 +199,13 @@ struct AuthorizationStatusView: View {
                     Spacer()
                     #if canImport(Speech)
                     Text(recognizer?.isAvailable == true ? "Yes" : "No")
+                        .fontWeight(.semibold)
+                        .foregroundColor(recognizer?.isAvailable == true ? .green : .red)
                     #else
                     Text("No")
-                    #endif
                         .fontWeight(.semibold)
-                        #if canImport(Speech)
-                        .foregroundColor(recognizer?.isAvailable == true ? .green : .red)
-                        #else
                         .foregroundColor(.red)
-                        #endif
+                    #endif
                 }
 
                 HStack {
@@ -215,10 +213,11 @@ struct AuthorizationStatusView: View {
                     Spacer()
                     #if canImport(Speech)
                     Text(recognizer?.locale.identifier ?? "N/A")
+                        .fontWeight(.semibold)
                     #else
                     Text("N/A")
-                    #endif
                         .fontWeight(.semibold)
+                    #endif
                 }
             }
             .padding()

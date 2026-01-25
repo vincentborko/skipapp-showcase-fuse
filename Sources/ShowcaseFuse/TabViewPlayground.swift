@@ -45,7 +45,9 @@ struct TabViewPlayground: View {
             }
             .tint(.red)
             .toolbar {
-                PlaygroundSourceLink(file: "TabViewPlayground.swift")
+                ToolbarItem {
+                    PlaygroundSourceLink(file: "TabViewPlayground.swift")
+                }
             }
         } else {
             TabView(selection: $selectedTab) {
@@ -74,7 +76,9 @@ struct TabViewPlayground: View {
             }
             .tint(.red)
             .toolbar {
-                PlaygroundSourceLink(file: "TabViewPlayground.swift")
+                ToolbarItem {
+                    PlaygroundSourceLink(file: "TabViewPlayground.swift")
+                }
             }
         }
     }

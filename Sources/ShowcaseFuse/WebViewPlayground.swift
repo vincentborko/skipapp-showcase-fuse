@@ -1,7 +1,7 @@
 // Copyright 2025 Skip
 import SwiftUI
 
-#if canImport(SkipWeb)
+#if os(iOS) && canImport(SkipWeb)
 import SkipWeb
 
 /// This component uses the `SkipWeb` module from https://source.skip.tools/skip-web
