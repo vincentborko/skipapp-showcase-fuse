@@ -12,7 +12,9 @@ struct PreferencePlayground: View {
         }
         .padding()
         .toolbar {
-            PlaygroundSourceLink(file: "PreferencePlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "PreferencePlayground.swift")
+            }
         }
     }
 }

@@ -47,7 +47,9 @@ struct ShareLinkPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "ShareLinkPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ShareLinkPlayground.swift")
+            }
         }
     }
 }

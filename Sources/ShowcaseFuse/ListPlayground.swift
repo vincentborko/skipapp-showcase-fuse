@@ -85,7 +85,9 @@ struct ListPlayground: View {
             }
         }
         .toolbar {
-            PlaygroundSourceLink(file: "ListPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ListPlayground.swift")
+            }
         }
         .navigationDestination(for: ListPlaygroundType.self) {
             switch $0 {
@@ -880,7 +882,7 @@ struct MultiSelectionListPlayground: View {
                 }
                 .padding(.vertical, 2)
             }
-            #if !os(macOS)
+            #if !os(macOS) && !SKIP
             .environment(\.editMode, $editMode)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

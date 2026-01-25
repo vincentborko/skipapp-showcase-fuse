@@ -24,7 +24,9 @@ struct AccessibilityPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "AccessibilityPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "AccessibilityPlayground.swift")
+            }
         }
     }
 }

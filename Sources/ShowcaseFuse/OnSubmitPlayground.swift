@@ -28,7 +28,9 @@ struct OnSubmitPlayground: View {
             submitText = submitText + "Form "
         }
         .toolbar {
-            PlaygroundSourceLink(file: "OnSubmitPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "OnSubmitPlayground.swift")
+            }
         }
     }
 }

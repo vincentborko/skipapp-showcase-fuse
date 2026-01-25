@@ -211,7 +211,9 @@ struct GesturePlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "GesturePlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "GesturePlayground.swift")
+            }
         }
     }
 }

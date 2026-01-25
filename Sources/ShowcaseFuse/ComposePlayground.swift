@@ -15,7 +15,9 @@ struct ComposePlayground: View {
         }
         .padding()
         .toolbar {
-            PlaygroundSourceLink(file: "ComposePlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ComposePlayground.swift")
+            }
         }
     }
 }

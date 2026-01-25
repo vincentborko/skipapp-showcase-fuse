@@ -6,6 +6,7 @@ struct ScrollBehaviorModifier: ViewModifier {
     let isViewAligned: Bool
     
     func body(content: Content) -> some View {
+        #if !SKIP
         if isPaging {
             content.scrollTargetBehavior(.paging)
         } else if isViewAligned {
@@ -13,6 +14,9 @@ struct ScrollBehaviorModifier: ViewModifier {
         } else {
             content
         }
+        #else
+        content
+        #endif
     }
 }
 
@@ -90,9 +94,13 @@ struct ScrollPositionPlayground: View {
                                 .id(item)
                         }
                     }
+                    #if !SKIP
                     .scrollTargetLayout()
+                    #endif
                 }
+                #if !SKIP
                 .scrollPosition(id: $scrolledID)
+                #endif
                 .modifier(ScrollBehaviorModifier(isPaging: isPagingEnabled, isViewAligned: isViewAlignedEnabled))
                 
                 Divider()
@@ -112,16 +120,20 @@ struct ScrollPositionPlayground: View {
                                 .id(item)
                         }
                     }
+                    #if !SKIP
                     .scrollTargetLayout()
+                    #endif
                     .padding()
                 }
+                #if !SKIP
                 .scrollPosition(id: $scrolledID)
+                #endif
                 .modifier(ScrollBehaviorModifier(isPaging: isPagingEnabled, isViewAligned: isViewAlignedEnabled))
                 .frame(height: 120)
             }
             .navigationTitle("Scroll Position")
             .toolbar {
-                ToolbarItem {
+                ToolbarItem(placement: .primaryAction) {
                     PlaygroundSourceLink(file: "ScrollPositionPlayground.swift")
                 }
             }

@@ -28,7 +28,9 @@ struct ContentTransitionsPlayground: View {
                         }
                         Spacer()
                         Text(isToggled ? "ON" : "OFF")
+                            #if !SKIP
                             .contentTransition(.identity)
+                            #endif
                             .font(.title2)
                             .bold()
                     }
@@ -55,7 +57,9 @@ struct ContentTransitionsPlayground: View {
                         }
                         Spacer()
                         Text(favoriteFruit)
+                            #if !SKIP
                             .contentTransition(.opacity)
+                            #endif
                             .font(.title2)
                             .bold()
                     }
@@ -80,7 +84,9 @@ struct ContentTransitionsPlayground: View {
                         }
                         Spacer()
                         Text(isToggled ? "Show Less" : "Show More")
+                            #if !SKIP
                             .contentTransition(.interpolate)
+                            #endif
                             .font(.title2)
                             .bold()
                     }
@@ -111,10 +117,14 @@ struct ContentTransitionsPlayground: View {
                             }
                             Spacer()
                             Text("\\(count)")
+                                #if !SKIP
                                 .contentTransition(.numericText())
+                                #endif
                                 .font(.largeTitle)
                                 .bold()
-                                .monospacedDigit()
+                                #if !SKIP
+                            .monospacedDigit()
+                            #endif
                             Spacer()
                             Button("+1") {
                                 withAnimation(.default) {
@@ -137,10 +147,14 @@ struct ContentTransitionsPlayground: View {
                             }
                             Spacer()
                             Text("Score: \\(score)")
+                                #if !SKIP
                                 .contentTransition(.numericText(countsDown: false))
+                                #endif
                                 .font(.title2)
                                 .bold()
-                                .monospacedDigit()
+                                #if !SKIP
+                            .monospacedDigit()
+                            #endif
                         }
                     }
                 }
@@ -160,10 +174,14 @@ struct ContentTransitionsPlayground: View {
                         Text("\\(count)")
                             .contentTransition(.numericText())
                             .font(.system(size: 48, weight: .bold, design: .rounded))
+                            #if !SKIP
                             .monospacedDigit()
+                            #endif
                         
                         Text(count == 0 ? "Zero" : count == 1 ? "One" : count < 10 ? "Single Digit" : count < 100 ? "Double Digit" : "Triple Digit")
+                            #if !SKIP
                             .contentTransition(.interpolate)
+                            #endif
                             .font(.headline)
                             .foregroundColor(.secondary)
                     }
@@ -190,13 +208,10 @@ struct ContentTransitionsPlayground: View {
         }
         .navigationTitle("Content Transitions")
         .toolbar {
-            PlaygroundSourceLink(file: "ContentTransitionsPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ContentTransitionsPlayground.swift")
+            }
         }
     }
 }
 
-#Preview {
-    NavigationView {
-        ContentTransitionsPlayground()
-    }
-}

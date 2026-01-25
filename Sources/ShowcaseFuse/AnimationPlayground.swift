@@ -373,7 +373,9 @@ struct AnimationPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "AnimationPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "AnimationPlayground.swift")
+            }
         }
     }
 }

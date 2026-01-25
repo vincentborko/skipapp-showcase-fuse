@@ -78,7 +78,9 @@ struct ProgressViewPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "ProgressViewPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ProgressViewPlayground.swift")
+            }
         }
     }
 }

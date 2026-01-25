@@ -15,7 +15,9 @@ struct TimerPlayground: View {
         }
         .padding()
         .toolbar {
-            PlaygroundSourceLink(file: "TimerPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "TimerPlayground.swift")
+            }
         }
     }
 }

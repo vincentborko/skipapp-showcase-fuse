@@ -12,7 +12,9 @@ struct IconPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "IconPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "IconPlayground.swift")
+            }
         }
     }
 

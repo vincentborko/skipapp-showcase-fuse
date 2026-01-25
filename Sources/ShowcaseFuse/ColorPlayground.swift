@@ -37,7 +37,9 @@ struct ColorPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "ColorPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ColorPlayground.swift")
+            }
         }
     }
 

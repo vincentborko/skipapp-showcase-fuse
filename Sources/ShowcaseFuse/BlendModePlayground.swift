@@ -141,7 +141,9 @@ struct BlendModePlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "BlendModePlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "BlendModePlayground.swift")
+            }
         }
     }
 

@@ -55,7 +55,9 @@ struct TransformPlayground: View {
             }
         }
         .toolbar {
-            PlaygroundSourceLink(file: "TransformPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "TransformPlayground.swift")
+            }
         }
     }
 

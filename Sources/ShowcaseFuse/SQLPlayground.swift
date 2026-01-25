@@ -10,7 +10,9 @@ struct SQLPlayground: View {
         SQLItemListView()
             .environment(database)
             .toolbar {
-                PlaygroundSourceLink(file: "SQLPlayground.swift")
+                ToolbarItem(placement: .primaryAction) {
+                    PlaygroundSourceLink(file: "SQLPlayground.swift")
+                }
             }
     }
 }
@@ -87,9 +89,11 @@ struct SQLItemEditorView: View {
             DatePicker("Date", selection: $item.date)
         }
         .toolbar {
-            Button("Save") {
-                database.updateItem(item)
-                dismiss() // pop back up on save
+            ToolbarItem(placement: .primaryAction) {
+                Button("Save") {
+                    database.updateItem(item)
+                    dismiss() // pop back up on save
+                }
             }
         }
     }

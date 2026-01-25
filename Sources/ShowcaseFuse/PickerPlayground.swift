@@ -159,7 +159,9 @@ struct PickerPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "PickerPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "PickerPlayground.swift")
+            }
         }
     }
 }

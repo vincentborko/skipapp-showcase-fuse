@@ -45,7 +45,9 @@ struct TrackingPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "TrackingPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "TrackingPlayground.swift")
+            }
         }
     }
 }

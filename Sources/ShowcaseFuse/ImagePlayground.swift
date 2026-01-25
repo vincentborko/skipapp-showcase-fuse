@@ -317,7 +317,9 @@ struct ImagePlayground: View {
         }
         .redacted(reason: redaction)
         .toolbar {
-            PlaygroundSourceLink(file: "ImagePlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ImagePlayground.swift")
+            }
         }
     }
 }

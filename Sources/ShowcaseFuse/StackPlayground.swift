@@ -179,7 +179,9 @@ struct StackPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "StackPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "StackPlayground.swift")
+            }
         }
     }
 

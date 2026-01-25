@@ -34,7 +34,9 @@ struct LinkPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "LinkPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "LinkPlayground.swift")
+            }
         }
     }
 }

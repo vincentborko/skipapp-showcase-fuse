@@ -82,7 +82,9 @@ struct HapticFeedbackPlayground: View {
         }
         .padding()
         .toolbar {
-            PlaygroundSourceLink(file: "HapticFeedbackPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "HapticFeedbackPlayground.swift")
+            }
         }
     }
 }

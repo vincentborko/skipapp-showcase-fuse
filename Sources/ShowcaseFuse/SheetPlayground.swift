@@ -35,7 +35,9 @@ struct SheetPlayground: View {
 
         }
         .toolbar {
-            PlaygroundSourceLink(file: "SheetPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "SheetPlayground.swift")
+            }
         }
         #else
         VStack(spacing: 16) {
@@ -104,7 +106,9 @@ struct SheetPlayground: View {
             #endif
         }
         .toolbar {
-            PlaygroundSourceLink(file: "SheetPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "SheetPlayground.swift")
+            }
         }
         #endif
     }
@@ -219,8 +223,10 @@ struct PresentationModifiersSheetContent: View {
             #endif
         }
         .presentationDetents([selectedDetent.presentationDetent])
+        #if !SKIP
         .presentationDragIndicator(dragIndicatorVisible ? .visible : .hidden)
         .presentationCornerRadius(useCustomCornerRadius ? customCornerRadius : nil)
+        #endif
     }
 }
 

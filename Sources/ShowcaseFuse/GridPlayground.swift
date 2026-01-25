@@ -65,7 +65,9 @@ struct GridPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "GridPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "GridPlayground.swift")
+            }
         }
     }
 }

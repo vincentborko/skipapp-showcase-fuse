@@ -134,7 +134,9 @@ struct TextPlayground: View {
         }
         .redacted(reason: redaction)
         .toolbar {
-            PlaygroundSourceLink(file: "TextPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "TextPlayground.swift")
+            }
         }
     }
 }

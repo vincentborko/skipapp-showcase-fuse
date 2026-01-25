@@ -138,7 +138,9 @@ struct SymbolPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "SymbolPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "SymbolPlayground.swift")
+            }
         }
     }
 

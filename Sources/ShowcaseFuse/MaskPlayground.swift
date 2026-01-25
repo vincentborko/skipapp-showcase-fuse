@@ -84,7 +84,9 @@ struct MaskPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "MaskPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "MaskPlayground.swift")
+            }
         }
     }
 }

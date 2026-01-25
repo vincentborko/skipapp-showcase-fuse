@@ -54,7 +54,9 @@ struct NavigationStackPlayground: View {
             NavigationPathBindingSheetContentView()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "NavigationStackPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "NavigationStackPlayground.swift")
+            }
         }
     }
 }
@@ -75,15 +77,19 @@ struct PathBindingSheetContentView: View {
                 }
                 #if os(macOS)
                 .toolbar {
-                    Button("Dismiss") {
-                        dismiss()
+                    ToolbarItem(placement: .primaryAction) {
+                        Button("Dismiss") {
+                            dismiss()
+                        }
                     }
                 }
                 #else
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    Button("Dismiss") {
-                        dismiss()
+                    ToolbarItem(placement: .primaryAction) {
+                        Button("Dismiss") {
+                            dismiss()
+                        }
                     }
                 }
                 #endif
@@ -120,15 +126,19 @@ struct NavigationPathBindingSheetContentView: View {
                 }
                 #if os(macOS)
                 .toolbar {
-                    Button("Dismiss") {
-                        dismiss()
+                    ToolbarItem(placement: .primaryAction) {
+                        Button("Dismiss") {
+                            dismiss()
+                        }
                     }
                 }
                 #else
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    Button("Dismiss") {
-                        dismiss()
+                    ToolbarItem(placement: .primaryAction) {
+                        Button("Dismiss") {
+                            dismiss()
+                        }
                     }
                 }
                 #endif

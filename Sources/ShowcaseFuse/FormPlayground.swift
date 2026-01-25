@@ -118,7 +118,9 @@ struct FormPlayground: View {
         }
         .redacted(reason: redaction)
         .toolbar {
-            PlaygroundSourceLink(file: "ListControlsPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ListControlsPlayground.swift")
+            }
         }
         .navigationDestination(for: String.self) { value in
             Text(value)

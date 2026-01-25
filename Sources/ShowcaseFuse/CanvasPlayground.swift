@@ -1,6 +1,7 @@
 // Copyright 2023–2025 Skip
 import SwiftUI
 
+#if !SKIP
 struct CanvasPlayground: View {
     @State var animationPhase: Double = 0.0
 
@@ -213,7 +214,9 @@ struct CanvasPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "CanvasPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "CanvasPlayground.swift")
+            }
         }
         #else
         // Skip implementation - Canvas not yet supported
@@ -228,3 +231,11 @@ struct CanvasPlayground: View {
         #endif
     }
 }
+#else
+struct CanvasPlayground: View {
+    var body: some View {
+        Text("Canvas is not available in Skip")
+            .padding()
+    }
+}
+#endif

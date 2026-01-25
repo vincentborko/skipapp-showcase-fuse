@@ -175,7 +175,9 @@ struct BackgroundPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "BackgroundPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "BackgroundPlayground.swift")
+            }
         }
     }
 }

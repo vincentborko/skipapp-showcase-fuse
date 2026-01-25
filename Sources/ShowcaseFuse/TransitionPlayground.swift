@@ -305,7 +305,9 @@ struct TransitionPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "TransitionPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "TransitionPlayground.swift")
+            }
         }
     }
 

@@ -112,7 +112,9 @@ struct OffsetPositionPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "OffsetPositionPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "OffsetPositionPlayground.swift")
+            }
         }
     }
 }

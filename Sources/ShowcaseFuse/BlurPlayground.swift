@@ -120,7 +120,9 @@ struct BlurPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "BlurPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "BlurPlayground.swift")
+            }
         }
     }
 }

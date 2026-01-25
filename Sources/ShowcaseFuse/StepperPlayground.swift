@@ -115,7 +115,9 @@ struct StepperPlayground: View {
             }
         }
         .toolbar {
-            PlaygroundSourceLink(file: "StepperPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "StepperPlayground.swift")
+            }
         }
     }
 }

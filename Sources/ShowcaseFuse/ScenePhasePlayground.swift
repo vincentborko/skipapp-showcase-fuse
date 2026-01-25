@@ -19,7 +19,9 @@ struct ScenePhasePlayground: View {
 
         }
         .toolbar {
-            PlaygroundSourceLink(file: "ScenePhasePlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ScenePhasePlayground.swift")
+            }
         }
     }
 }

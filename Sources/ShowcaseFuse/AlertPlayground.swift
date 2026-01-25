@@ -72,7 +72,9 @@ struct AlertPlayground: View {
         }
         .padding()
         .toolbar {
-            PlaygroundSourceLink(file: "AlertPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "AlertPlayground.swift")
+            }
         }
         .alert("Title", isPresented: $titleIsPresented) {
         }

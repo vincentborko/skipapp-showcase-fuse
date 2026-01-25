@@ -49,7 +49,9 @@ struct GeometryReaderPlayground: View {
             .ignoresSafeArea()
             .border(.green, width: 2)
             .toolbar {
-                PlaygroundSourceLink(file: "GeometryReaderPlayground.swift")
+                ToolbarItem(placement: .primaryAction) {
+                    PlaygroundSourceLink(file: "GeometryReaderPlayground.swift")
+                }
             }
         }
     }

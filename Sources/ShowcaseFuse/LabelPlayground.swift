@@ -53,7 +53,9 @@ struct LabelPlayground: View {
             }
         }
         .toolbar {
-            PlaygroundSourceLink(file: "LabelPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "LabelPlayground.swift")
+            }
         }
     }
 }

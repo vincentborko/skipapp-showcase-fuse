@@ -67,7 +67,9 @@ struct TextFieldPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "TextFieldPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "TextFieldPlayground.swift")
+            }
         }
     }
 

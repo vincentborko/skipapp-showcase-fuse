@@ -45,7 +45,9 @@ struct ScrollViewPlayground: View {
             NavigationLink(type.title, value: type)
         }
         .toolbar {
-            PlaygroundSourceLink(file: "ScrollViewPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ScrollViewPlayground.swift")
+            }
         }
         .navigationDestination(for: ScrollViewPlaygroundType.self) {
             switch $0 {
@@ -126,9 +128,13 @@ struct ViewAlignedScrollViewPlayground: View {
                         .frame(width: 80, height: 80)
                     }
                 }
+                #if !SKIP
                 .scrollTargetLayout()
+                #endif
             }
+            #if !SKIP
             .scrollTargetBehavior(.viewAligned)
+            #endif
         } else {
             Text("Requires iOS 17+")
         }

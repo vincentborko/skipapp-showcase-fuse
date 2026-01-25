@@ -17,7 +17,9 @@ struct RedactedPlayground: View {
             }
         }
         .toolbar {
-            PlaygroundSourceLink(file: "RedactedPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "RedactedPlayground.swift")
+            }
         }
     }
 }

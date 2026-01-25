@@ -33,7 +33,9 @@ struct KeyboardPlayground: View {
             #endif
         }
         .toolbar {
-            PlaygroundSourceLink(file: "KeyboardPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "KeyboardPlayground.swift")
+            }
         }
     }
 }

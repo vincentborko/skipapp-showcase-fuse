@@ -28,7 +28,9 @@ struct TogglePlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "TogglePlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "TogglePlayground.swift")
+            }
         }
     }
 }

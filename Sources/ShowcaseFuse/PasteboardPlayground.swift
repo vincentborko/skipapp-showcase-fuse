@@ -60,7 +60,9 @@ struct PasteboardPlayground: View {
 //            pasteboardInfo = PasteboardInfo(notification.object as! UIPasteboard)
 //        })
         .toolbar {
-            PlaygroundSourceLink(file: "PasteboardPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "PasteboardPlayground.swift")
+            }
         }
     }
 }

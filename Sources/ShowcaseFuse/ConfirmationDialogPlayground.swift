@@ -47,7 +47,9 @@ struct ConfirmationDialogPlayground: View {
         }
         .padding()
         .toolbar {
-            PlaygroundSourceLink(file: "ConfirmationDialogPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ConfirmationDialogPlayground.swift")
+            }
         }
         .confirmationDialog("Title", isPresented: $defaultIsPresented) {
             ConfirmationDialogDestructiveButton(value: $value)

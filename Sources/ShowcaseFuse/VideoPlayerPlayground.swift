@@ -13,7 +13,9 @@ struct VideoPlayerPlayground: View {
             NavigationLink(value: type) { Text(type.title) }
         }
         .toolbar {
-            PlaygroundSourceLink(file: "VideoPlayerPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "VideoPlayerPlayground.swift")
+            }
         }
         .navigationDestination(for: VideoPlaygroundType.self) {
             switch $0 {

@@ -12,7 +12,9 @@ struct SpeechPlayground: View {
             NavigationLink(value: type) { Text(type.title) }
         }
         .toolbar {
-            PlaygroundSourceLink(file: "SpeechPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "SpeechPlayground.swift")
+            }
         }
         .navigationDestination(for: SpeechPlaygroundType.self) {
             switch $0 {

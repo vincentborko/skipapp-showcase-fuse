@@ -54,7 +54,9 @@ struct ViewThatFitsPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "ViewThatFitsPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ViewThatFitsPlayground.swift")
+            }
         }
     }
 }

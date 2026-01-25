@@ -12,7 +12,9 @@ struct TextEditorPlayground: View {
         TextEditor(text: $text)
             .italic()
         .toolbar {
-            PlaygroundSourceLink(file: "TextEditorPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "TextEditorPlayground.swift")
+            }
         }
     }
 }

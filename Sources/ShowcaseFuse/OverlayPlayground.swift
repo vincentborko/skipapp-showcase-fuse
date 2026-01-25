@@ -99,7 +99,9 @@ struct OverlayPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "OverlayPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "OverlayPlayground.swift")
+            }
         }
     }
 }

@@ -99,7 +99,9 @@ struct MinimumScaleFactorPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "MinimumScaleFactorPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "MinimumScaleFactorPlayground.swift")
+            }
         }
     }
 }

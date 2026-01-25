@@ -64,7 +64,9 @@ struct DatePickerPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "DatePickerPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "DatePickerPlayground.swift")
+            }
         }
     }
 }

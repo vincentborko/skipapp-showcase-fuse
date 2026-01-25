@@ -253,7 +253,9 @@ struct ToolbarPlayground: View {
             }
         }
         .toolbar {
-            PlaygroundSourceLink(file: "ToolbarPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ToolbarPlayground.swift")
+            }
         }
         .navigationDestination(for: ToolbarPlaygroundType.self) {
             $0.navigationTitle($0.title)
@@ -291,11 +293,15 @@ struct DefaultToolbarItemPlayground: View {
             }
         }
         .toolbar {
-            Button("First: \(firstTapCount)") {
-                firstTapCount += 1
+            ToolbarItem(placement: .primaryAction) {
+                Button("First: \(firstTapCount)") {
+                    firstTapCount += 1
+                }
             }
-            Button("Second: \(secondTapCount)") {
-                secondTapCount += 1
+            ToolbarItem(placement: .secondaryAction) {
+                Button("Second: \(secondTapCount)") {
+                    secondTapCount += 1
+                }
             }
         }
     }
@@ -315,15 +321,19 @@ struct UpdatingToolbarItemPlayground: View {
             }
         }
         .toolbar {
-            Button("Inc") {
-                tapCount += 1
+            ToolbarItem(placement: .primaryAction) {
+                Button("Inc") {
+                    tapCount += 1
+                }
             }
         }
         .navigationTitle("Tap Count: \(tapCount)")
         .toolbar {
             if tapCount % 2 == 0 {
-                Button("Even") {
-                    tapCount += 1
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Even") {
+                        tapCount += 1
+                    }
                 }
             }
         }
@@ -366,8 +376,10 @@ struct LabelToolbarItemPlayground: View {
             }
         }
         .toolbar {
-            Button(action: { dismiss() }) {
-                Label("Dismiss", systemImage: "trash")
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: { dismiss() }) {
+                    Label("Dismiss", systemImage: "trash")
+                }
             }
         }
     }
@@ -561,8 +573,10 @@ struct ToolbarItemPrincipalPlayground: View {
             }
         }
         .toolbar {
-            Button(action: { dismiss() }) {
-                Label("Dismiss", systemImage: "trash")
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: { dismiss() }) {
+                    Label("Dismiss", systemImage: "trash")
+                }
             }
         }
     }

@@ -159,7 +159,9 @@ struct FramePlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "FramePlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "FramePlayground.swift")
+            }
         }
     }
 }

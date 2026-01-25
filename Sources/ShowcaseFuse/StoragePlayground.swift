@@ -40,7 +40,9 @@ struct StoragePlayground: View {
         }
         .padding()
         .toolbar {
-            PlaygroundSourceLink(file: "StoragePlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "StoragePlayground.swift")
+            }
         }
     }
 }

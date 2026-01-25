@@ -22,7 +22,9 @@ struct SecureFieldPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "SecureFieldPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "SecureFieldPlayground.swift")
+            }
         }
     }
 }

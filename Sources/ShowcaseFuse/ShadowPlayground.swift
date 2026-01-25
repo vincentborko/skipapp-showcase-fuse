@@ -129,7 +129,9 @@ struct ShadowPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "ShadowPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ShadowPlayground.swift")
+            }
         }
     }
 }

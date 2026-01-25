@@ -48,7 +48,9 @@ struct LineSpacingPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "LineSpacingPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "LineSpacingPlayground.swift")
+            }
         }
     }
 }

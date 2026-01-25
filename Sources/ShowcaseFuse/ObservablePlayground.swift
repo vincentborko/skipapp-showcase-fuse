@@ -7,7 +7,9 @@ struct ObservablePlayground: View {
             ObservablesOuterView()
                 .environment(PlaygroundEnvironmentObject(text: "initialEnvironment"))
                 .toolbar {
-                    PlaygroundSourceLink(file: "ObservablePlayground.swift")
+                    ToolbarItem(placement: .primaryAction) {
+                        PlaygroundSourceLink(file: "ObservablePlayground.swift")
+                    }
                 }
         } else {
             Text("iOS 17 / macOS 14 required for Observation framework")

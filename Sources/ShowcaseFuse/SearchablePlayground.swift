@@ -44,7 +44,9 @@ struct SearchablePlayground: View {
             }
         }
         .toolbar {
-            PlaygroundSourceLink(file: "SearchablePlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "SearchablePlayground.swift")
+            }
         }
         .navigationDestination(for: SearchablePlaygroundType.self) {
             switch $0 {

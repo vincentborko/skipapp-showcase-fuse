@@ -401,7 +401,9 @@ struct ShapePlayground: View {
             }.padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "ShapePlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ShapePlayground.swift")
+            }
         }
     }
 }

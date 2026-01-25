@@ -77,7 +77,9 @@ struct BorderPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "BorderPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "BorderPlayground.swift")
+            }
         }
     }
 }

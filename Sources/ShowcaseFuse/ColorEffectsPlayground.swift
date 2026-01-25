@@ -225,7 +225,9 @@ struct ColorEffectsPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "ColorEffectsPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ColorEffectsPlayground.swift")
+            }
         }
     }
 

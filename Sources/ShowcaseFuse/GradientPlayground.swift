@@ -34,7 +34,9 @@ struct GradientPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "GradientPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "GradientPlayground.swift")
+            }
         }
     }
 }

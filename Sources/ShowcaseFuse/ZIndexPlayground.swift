@@ -49,7 +49,9 @@ struct ZIndexPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "ZIndexPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ZIndexPlayground.swift")
+            }
         }
     }
 }

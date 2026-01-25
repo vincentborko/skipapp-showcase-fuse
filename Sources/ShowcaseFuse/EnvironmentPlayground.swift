@@ -20,7 +20,9 @@ struct EnvironmentPlayground: View {
             logger.log("onChange(of: tapCountObservable.tapCount): \($0)")
         }
         .toolbar {
-            PlaygroundSourceLink(file: "EnvironmentPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "EnvironmentPlayground.swift")
+            }
         }
     }
 }

@@ -178,8 +178,10 @@ struct SafeAreaPlainList: View {
             .listStyle(.plain)
             .navigationTitle(SafeAreaPlaygroundType.plainList.title)
             .toolbar {
-                Button("Dismiss") {
-                    dismiss()
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Dismiss") {
+                        dismiss()
+                    }
                 }
             }
         }
@@ -210,8 +212,10 @@ struct SafeAreaList: View {
             }
             .navigationTitle(SafeAreaPlaygroundType.list.title)
             .toolbar {
-                Button("Dismiss") {
-                    dismiss()
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Dismiss") {
+                        dismiss()
+                    }
                 }
             }
         }

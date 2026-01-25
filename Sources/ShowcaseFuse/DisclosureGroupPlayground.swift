@@ -39,7 +39,9 @@ struct DisclosureGroupPlayground: View {
             .padding()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "DisclosureGroupPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "DisclosureGroupPlayground.swift")
+            }
         }
     }
 }

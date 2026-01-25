@@ -35,7 +35,9 @@ struct KeychainPlayground: View {
             loadKeys()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "KeychainPlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "KeychainPlayground.swift")
+            }
         }
     }
 

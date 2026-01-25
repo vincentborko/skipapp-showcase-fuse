@@ -37,7 +37,9 @@ struct ColorSchemePlayground: View {
             ColorSchemeSheetView()
         }
         .toolbar {
-            PlaygroundSourceLink(file: "ColorSchemePlayground.swift")
+            ToolbarItem(placement: .primaryAction) {
+                PlaygroundSourceLink(file: "ColorSchemePlayground.swift")
+            }
         }
     }
 }
@@ -61,8 +63,10 @@ struct ColorSchemeSheetView: View {
             .preferredColorScheme(namedColorScheme(for: preferredColorScheme))
             .navigationTitle("Sheet")
             .toolbar {
-                Button("Dismiss") {
-                    dismiss()
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Dismiss") {
+                        dismiss()
+                    }
                 }
             }
         }
