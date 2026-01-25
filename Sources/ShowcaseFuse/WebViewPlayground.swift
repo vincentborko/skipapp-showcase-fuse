@@ -1,5 +1,7 @@
 // Copyright 2025 Skip
 import SwiftUI
+
+#if canImport(SkipWeb)
 import SkipWeb
 
 /// This component uses the `SkipWeb` module from https://source.skip.tools/skip-web
@@ -48,15 +50,19 @@ struct WebViewPlayground: View {
             .accessibilityLabel(Text("Evaluate JavaScript"))
         }
         .navigationTitle(state.pageTitle ?? "WebView")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .sheet(isPresented: $showScriptSheet) {
             NavigationStack {
                 VStack {
                     TextField("JavaScript", text: $javaScriptInput)
                         .textFieldStyle(.roundedBorder)
                         .autocorrectionDisabled()
+                        #if os(iOS)
                         .keyboardType(.asciiCapable) // also disables smart quotes
                         .textInputAutocapitalization(.never)
+                        #endif
                         .onSubmit(of: .text) { evaluateJavaScript() }
                         .padding()
                     Text("Output")
@@ -107,3 +113,22 @@ struct WebViewPlayground: View {
         }
     }
 }
+#else
+// Fallback when SkipWeb is not available
+struct WebViewPlayground: View {
+    var body: some View {
+        VStack {
+            Image(systemName: "safari")
+                .font(.largeTitle)
+                .foregroundColor(.gray)
+            Text("WebView Not Available")
+                .font(.headline)
+            Text("SkipWeb module is not imported")
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+        .padding()
+        .navigationTitle("WebView")
+    }
+}
+#endif

@@ -81,7 +81,9 @@ struct BindablePlayground: View {
                 .padding()
             }
             .navigationTitle("@Bindable Demo")
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
         }
     }
 }

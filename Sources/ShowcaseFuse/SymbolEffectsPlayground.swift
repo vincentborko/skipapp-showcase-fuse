@@ -140,7 +140,7 @@ struct SymbolEffectsPlayground: View {
                             Image(systemName: "star.fill")
                                 .font(.largeTitle)
                                 .foregroundColor(.yellow)
-                                .symbolEffect(.scale(2.0), value: scaleCount)
+                                .symbolEffect(.scale.up, value: scaleCount)
                             
                             Spacer()
                             

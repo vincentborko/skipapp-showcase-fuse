@@ -1,6 +1,9 @@
 // Copyright 2025 Skip
 import SwiftUI
-// import SkipSpeech // Temporarily disabled - module not available
+
+#if canImport(Speech)
+import Speech
+#endif
 
 /// This component uses the `SkipSpeech` module for cross-platform speech recognition
 struct SpeechPlayground: View {
@@ -37,12 +40,14 @@ enum SpeechPlaygroundType: String, CaseIterable {
 }
 
 struct BasicRecognitionView: View {
+    #if canImport(Speech)
     @State var recognizer: SFSpeechRecognizer?
+    @State var request: SFSpeechAudioBufferRecognitionRequest?
+    @State var task: SFSpeechRecognitionTask?
+    #endif
     @State var transcription = ""
     @State var isListening = false
     @State var errorMessage: String?
-    @State var request: SFSpeechAudioBufferRecognitionRequest?
-    @State var task: SFSpeechRecognitionTask?
 
     var body: some View {
         VStack(spacing: 20) {
@@ -107,7 +112,9 @@ struct BasicRecognitionView: View {
         }
         .padding()
         .onAppear {
+            #if canImport(Speech)
             recognizer = SFSpeechRecognizer(locale: Locale(identifier: "de-DE"))
+            #endif
         }
         .onDisappear {
             stopRecognition()
@@ -115,6 +122,7 @@ struct BasicRecognitionView: View {
     }
 
     private func startRecognition() {
+        #if canImport(Speech)
         guard let recognizer = recognizer else {
             errorMessage = "Speech recognizer not available"
             return
@@ -149,19 +157,28 @@ struct BasicRecognitionView: View {
             }
         }
         isListening = true
+        #else
+        errorMessage = "Speech recognition not available on this platform"
+        #endif
     }
 
     private func stopRecognition() {
+        #if canImport(Speech)
         task?.cancel()
         task = nil
         request = nil
+        #endif
         isListening = false
     }
 }
 
 struct AuthorizationStatusView: View {
+    #if canImport(Speech)
     @State var status: SFSpeechRecognizerAuthorizationStatus = .notDetermined
     @State var recognizer: SFSpeechRecognizer?
+    #else
+    @State var status: String = "Not Available"
+    #endif
 
     var body: some View {
         VStack(spacing: 20) {
@@ -180,15 +197,27 @@ struct AuthorizationStatusView: View {
                 HStack {
                     Text("Speech Available:")
                     Spacer()
+                    #if canImport(Speech)
                     Text(recognizer?.isAvailable == true ? "Yes" : "No")
+                    #else
+                    Text("No")
+                    #endif
                         .fontWeight(.semibold)
+                        #if canImport(Speech)
                         .foregroundColor(recognizer?.isAvailable == true ? .green : .red)
+                        #else
+                        .foregroundColor(.red)
+                        #endif
                 }
 
                 HStack {
                     Text("Locale:")
                     Spacer()
+                    #if canImport(Speech)
                     Text(recognizer?.locale.identifier ?? "N/A")
+                    #else
+                    Text("N/A")
+                    #endif
                         .fontWeight(.semibold)
                 }
             }
@@ -197,17 +226,21 @@ struct AuthorizationStatusView: View {
             .cornerRadius(8)
 
             Button("Request Authorization") {
+                #if canImport(Speech)
                 SFSpeechRecognizer.requestAuthorization { newStatus in
                     Task { @MainActor in
                         status = newStatus
                     }
                 }
+                #endif
             }
             .buttonStyle(.borderedProminent)
 
             Button("Refresh Status") {
+                #if canImport(Speech)
                 status = SFSpeechRecognizer.authorizationStatus()
                 recognizer = SFSpeechRecognizer(locale: Locale(identifier: "de-DE"))
+                #endif
             }
             .buttonStyle(.bordered)
 
@@ -228,12 +261,15 @@ struct AuthorizationStatusView: View {
         }
         .padding()
         .onAppear {
+            #if canImport(Speech)
             recognizer = SFSpeechRecognizer(locale: Locale(identifier: "de-DE"))
             status = SFSpeechRecognizer.authorizationStatus()
+            #endif
         }
     }
 
     var statusText: String {
+        #if canImport(Speech)
         switch status {
         case .notDetermined: return "Not Determined"
         case .denied: return "Denied"
@@ -241,13 +277,20 @@ struct AuthorizationStatusView: View {
         case .authorized: return "Authorized"
         @unknown default: return "Unknown"
         }
+        #else
+        return status
+        #endif
     }
 
     var statusColor: Color {
+        #if canImport(Speech)
         switch status {
         case .authorized: return .green
         case .denied, .restricted: return .red
         default: return .orange
         }
+        #else
+        return .orange
+        #endif
     }
 }

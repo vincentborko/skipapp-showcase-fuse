@@ -29,9 +29,11 @@ struct SettingsView: View {
                     .toolbar {
                         ToolbarItem {
                             Button("System Settings") {
+                                #if os(iOS)
                                 Task {
                                     await UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                                 }
+                                #endif
                             }
                         }
                     }
