@@ -34,7 +34,7 @@ struct ContentTransitionsPlayground: View {
                     }
                 }
                 .padding()
-                .background(Color(.systemGray6))
+                .background(Color.gray.opacity(0.1))
                 .cornerRadius(12)
                 
                 // Opacity Transition
@@ -61,7 +61,7 @@ struct ContentTransitionsPlayground: View {
                     }
                 }
                 .padding()
-                .background(Color(.systemGray6))
+                .background(Color.gray.opacity(0.1))
                 .cornerRadius(12)
                 
                 // Interpolate Transition
@@ -86,7 +86,7 @@ struct ContentTransitionsPlayground: View {
                     }
                 }
                 .padding()
-                .background(Color(.systemGray6))
+                .background(Color.gray.opacity(0.1))
                 .cornerRadius(12)
                 
                 // Numeric Text Transition
@@ -145,7 +145,7 @@ struct ContentTransitionsPlayground: View {
                     }
                 }
                 .padding()
-                .background(Color(.systemGray6))
+                .background(Color.gray.opacity(0.1))
                 .cornerRadius(12)
                 
                 // Combined Example - Counter with Label
@@ -183,7 +183,7 @@ struct ContentTransitionsPlayground: View {
                     }
                 }
                 .padding()
-                .background(Color(.systemGray6))
+                .background(Color.gray.opacity(0.1))
                 .cornerRadius(12)
             }
             .padding()

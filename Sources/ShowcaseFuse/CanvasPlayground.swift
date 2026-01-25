@@ -2,7 +2,7 @@
 import SwiftUI
 
 struct CanvasPlayground: View {
-    @State private var animationPhase: Double = 0.0
+    @State var animationPhase: Double = 0.0
 
     var body: some View {
         ScrollView {
