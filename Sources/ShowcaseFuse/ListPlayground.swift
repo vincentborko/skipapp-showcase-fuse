@@ -22,6 +22,8 @@ enum ListPlaygroundType: String, CaseIterable {
     case onMoveDelete
     case positioned
     case badges
+    case singleSelection
+    case multiSelection
 
     var title: String {
         switch self {
@@ -65,6 +67,10 @@ enum ListPlaygroundType: String, CaseIterable {
             return "Positioned"
         case .badges:
             return "Badges"
+        case .singleSelection:
+            return "Single Selection"
+        case .multiSelection:
+            return "Multi Selection"
         }
     }
 }
@@ -142,6 +148,12 @@ struct ListPlayground: View {
                     .navigationTitle($0.title)
             case .badges:
                 BadgeListPlayground()
+                    .navigationTitle($0.title)
+            case .singleSelection:
+                SingleSelectionListPlayground()
+                    .navigationTitle($0.title)
+            case .multiSelection:
+                MultiSelectionListPlayground()
                     .navigationTitle($0.title)
             }
         }
@@ -750,6 +762,133 @@ struct BadgeListPlayground: View {
                 }
                 .badge("99+")
             }
+        }
+    }
+}
+
+struct SingleSelectionListPlayground: View {
+    struct Item: Identifiable, Hashable {
+        let id = UUID()
+        let name: String
+        let icon: String
+    }
+    
+    @State var items = [
+        Item(name: "Apple", icon: "🍎"),
+        Item(name: "Banana", icon: "🍌"),
+        Item(name: "Orange", icon: "🍊"),
+        Item(name: "Grape", icon: "🍇"),
+        Item(name: "Strawberry", icon: "🍓")
+    ]
+    
+    @State var selectedItem: Item?
+    
+    var body: some View {
+        VStack {
+            List(items, selection: $selectedItem) { item in
+                HStack {
+                    Text(item.icon)
+                    Text(item.name)
+                    Spacer()
+                    if selectedItem == item {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.blue)
+                    }
+                }
+            }
+            
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Selected Item:")
+                    .font(.headline)
+                
+                if let selectedItem = selectedItem {
+                    Text("• \(selectedItem.icon) \(selectedItem.name)")
+                } else {
+                    Text("No item selected")
+                        .foregroundStyle(.secondary)
+                }
+                
+                Button("Clear Selection") {
+                    selectedItem = nil
+                }
+                .buttonStyle(.bordered)
+                .disabled(selectedItem == nil)
+            }
+            .padding()
+            .background(Color.gray.opacity(0.1))
+            .cornerRadius(8)
+            .padding(.horizontal)
+        }
+    }
+}
+
+struct MultiSelectionListPlayground: View {
+    struct Item: Identifiable, Hashable {
+        let id = UUID()
+        let name: String
+        let icon: String
+    }
+    
+    @State var items = [
+        Item(name: "Apple", icon: "🍎"),
+        Item(name: "Banana", icon: "🍌"),
+        Item(name: "Orange", icon: "🍊"),
+        Item(name: "Grape", icon: "🍇"),
+        Item(name: "Strawberry", icon: "🍓"),
+        Item(name: "Watermelon", icon: "🍉"),
+        Item(name: "Pineapple", icon: "🍍"),
+        Item(name: "Cherry", icon: "🍒")
+    ]
+    
+    @State var selectedItems: Set<Item> = []
+    
+    var body: some View {
+        VStack {
+            List(items, selection: $selectedItems) { item in
+                HStack {
+                    Text(item.icon)
+                    Text(item.name)
+                    Spacer()
+                    if selectedItems.contains(item) {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.blue)
+                    }
+                }
+            }
+            
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Selected Items (\(selectedItems.count)):")
+                    .font(.headline)
+                
+                if selectedItems.isEmpty {
+                    Text("No items selected")
+                        .foregroundStyle(.secondary)
+                } else {
+                    ScrollView {
+                        ForEach(Array(selectedItems), id: \.id) { item in
+                            Text("• \(item.icon) \(item.name)")
+                        }
+                    }
+                    .frame(maxHeight: 100)
+                }
+                
+                HStack {
+                    Button("Select All") {
+                        selectedItems = Set(items)
+                    }
+                    .disabled(selectedItems.count == items.count)
+                    
+                    Button("Clear Selection") {
+                        selectedItems = []
+                    }
+                    .disabled(selectedItems.isEmpty)
+                }
+                .buttonStyle(.bordered)
+            }
+            .padding()
+            .background(Color.gray.opacity(0.1))
+            .cornerRadius(8)
+            .padding(.horizontal)
         }
     }
 }
