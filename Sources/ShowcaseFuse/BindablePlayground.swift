@@ -132,8 +132,10 @@ struct SettingsDisplayView: View {
     }
 }
 
+#if !SKIP
 struct BindablePlayground_Previews: PreviewProvider {
     static var previews: some View {
         BindablePlayground()
     }
 }
+#endif

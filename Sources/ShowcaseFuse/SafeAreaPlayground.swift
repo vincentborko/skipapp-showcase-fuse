@@ -1,7 +1,7 @@
 // Copyright 2023–2025 Skip
 import SwiftUI
 
-#if os(iOS) || os(tvOS) || os(visionOS) || SKIP
+#if os(iOS) || os(tvOS) || os(visionOS) || SKIP || SKIP_BRIDGE
 
 enum SafeAreaPlaygroundType: String, CaseIterable {
     case fullscreenContent
@@ -251,6 +251,7 @@ struct SafeAreaInsetBottomView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
+        #if !SKIP
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 20) {
@@ -281,6 +282,7 @@ struct SafeAreaInsetBottomView: View {
                     }
                 }
             }
+            #if !SKIP
             .safeAreaInset(edge: .bottom) {
                 HStack {
                     Button(action: {}) {
@@ -299,7 +301,12 @@ struct SafeAreaInsetBottomView: View {
                 .background(.bar, in: .rect(cornerRadius: 12))
                 .padding(.horizontal)
             }
+            #endif
         }
+        #else
+        Text("safeAreaInset is not available in Skip")
+            .padding()
+        #endif
     }
 }
 
@@ -307,6 +314,7 @@ struct SafeAreaInsetTopView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
+        #if !SKIP
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 20) {
@@ -340,6 +348,7 @@ struct SafeAreaInsetTopView: View {
                     }
                 }
             }
+            #if !SKIP
             .safeAreaInset(edge: .top) {
                 HStack {
                     Image(systemName: "bell.fill")
@@ -354,7 +363,12 @@ struct SafeAreaInsetTopView: View {
                 .background(.yellow.opacity(0.3), in: .rect(cornerRadius: 8))
                 .padding(.horizontal)
             }
+            #endif
         }
+        #else
+        Text("safeAreaInset is not available in Skip")
+            .padding()
+        #endif
     }
 }
 
@@ -362,6 +376,7 @@ struct SafeAreaInsetLeadingView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
+        #if !SKIP
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 20) {
@@ -392,6 +407,7 @@ struct SafeAreaInsetLeadingView: View {
                     }
                 }
             }
+            #if !SKIP
             .safeAreaInset(edge: .leading, alignment: .center, spacing: 8) {
                 VStack(spacing: 12) {
                     ForEach(0..<5) { index in
@@ -407,7 +423,12 @@ struct SafeAreaInsetLeadingView: View {
                 .background(.bar, in: .rect(cornerRadius: 12))
                 .padding(.vertical)
             }
+            #endif
         }
+        #else
+        Text("safeAreaInset is not available in Skip")
+            .padding()
+        #endif
     }
 }
 
@@ -415,6 +436,7 @@ struct SafeAreaInsetTrailingView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
+        #if !SKIP
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 20) {
@@ -445,6 +467,7 @@ struct SafeAreaInsetTrailingView: View {
                     }
                 }
             }
+            #if !SKIP
             .safeAreaInset(edge: .trailing) {
                 VStack(spacing: 8) {
                     Text("Quick")
@@ -471,7 +494,12 @@ struct SafeAreaInsetTrailingView: View {
                 .background(.bar, in: .rect(cornerRadius: 12))
                 .padding(.vertical)
             }
+            #endif
         }
+        #else
+        Text("safeAreaInset is not available in Skip")
+            .padding()
+        #endif
     }
 }
 
@@ -479,6 +507,7 @@ struct SafeAreaInsetMultipleView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
+        #if !SKIP
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 20) {
@@ -509,6 +538,7 @@ struct SafeAreaInsetMultipleView: View {
                     }
                 }
             }
+            #if !SKIP
             .safeAreaInset(edge: .top, spacing: 8) {
                 Text("🔔 You have 3 new messages")
                     .padding()
@@ -528,7 +558,12 @@ struct SafeAreaInsetMultipleView: View {
                 .background(.bar, in: .rect(cornerRadius: 12))
                 .padding(.horizontal)
             }
+            #endif
         }
+        #else
+        Text("safeAreaInset is not available in Skip")
+            .padding()
+        #endif
     }
 }
 

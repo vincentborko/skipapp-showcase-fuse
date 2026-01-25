@@ -245,6 +245,7 @@ struct AdvancedGesturesPlayground: View {
     }
 }
 
+#if !SKIP
 struct AdvancedGesturesPlayground_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
@@ -252,3 +253,4 @@ struct AdvancedGesturesPlayground_Previews: PreviewProvider {
         }
     }
 }
+#endif
