@@ -9,6 +9,7 @@ enum PlaygroundType: CaseIterable, View {
     case contentTransitions
 //    case audio
     case background
+    case bindable
     case blendMode
     case blur
     case border
@@ -108,6 +109,8 @@ enum PlaygroundType: CaseIterable, View {
 //            return LocalizedStringResource("Audio")
         case .background:
             return LocalizedStringResource("Background", comment: "Title of Background playground")
+        case .bindable:
+            return LocalizedStringResource("@Bindable", comment: "Title of @Bindable playground")
         case .blendMode:
             return LocalizedStringResource("BlendMode", comment: "Title of BlendMode playground")
         case .blur:
@@ -293,6 +296,12 @@ enum PlaygroundType: CaseIterable, View {
 //            AudioPlayground()
         case .background:
             BackgroundPlayground()
+        case .bindable:
+            if #available(iOS 17.0, macOS 14.0, *) {
+                BindablePlayground()
+            } else {
+                Text("@Bindable requires iOS 17.0 / macOS 14.0")
+            }
         case .blendMode:
             BlendModePlayground()
         case .blur:
