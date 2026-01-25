@@ -5,7 +5,7 @@ struct TabViewPlayground: View {
     @State var selectedTab = "Home"
 
     var body: some View {
-        if #available(iOS 18.4, *) {
+        if #available(iOS 18.0, macOS 15.0, *) {
             TabView(selection: $selectedTab) {
                 Tab("Home", systemImage: "house.fill", value: "Home") {
                     TabPlaygroundContentView(label: "Home", selectedTab: $selectedTab)
@@ -37,18 +37,25 @@ struct TabViewPlayground: View {
                         Text("Hidden Tab")
                     }
                     .hidden(true)
-                    Tab("Disabled", systemImage: "xmark", value: "Disabled") {
-                        Text("Disabled Tab")
+                    if #available(iOS 18.4, macOS 15.4, *) {
+                        Tab("Disabled", systemImage: "xmark", value: "Disabled") {
+                            Text("Disabled Tab")
+                        }
+                        .disabled(true)
+                    } else {
+                        Tab("Disabled", systemImage: "xmark", value: "Disabled") {
+                            Text("Disabled Tab")
+                        }
                     }
-                    .disabled(true)
                 }
             }
             .tint(.red)
-            .toolbar {
-                ToolbarItem {
-                    PlaygroundSourceLink(file: "TabViewPlayground.swift")
-                }
-            }
+            // TODO: Fix toolbar ambiguity issue
+//            .toolbar {
+//                ToolbarItem {
+//                    PlaygroundSourceLink(file: "TabViewPlayground.swift")
+//                }
+//            }
         } else {
             TabView(selection: $selectedTab) {
                 TabPlaygroundContentView(label: "Home", selectedTab: $selectedTab)
@@ -75,11 +82,12 @@ struct TabViewPlayground: View {
                 #endif
             }
             .tint(.red)
-            .toolbar {
-                ToolbarItem {
-                    PlaygroundSourceLink(file: "TabViewPlayground.swift")
-                }
-            }
+            // TODO: Fix toolbar ambiguity issue
+//            .toolbar {
+//                ToolbarItem {
+//                    PlaygroundSourceLink(file: "TabViewPlayground.swift")
+//                }
+//            }
         }
     }
 }
