@@ -874,7 +874,12 @@ struct MultiSelectionListPlayground: View {
                 
                 HStack {
                     Button("Select All") {
-                        selectedItems = Set(items)
+                        // Select items incrementally to avoid bridging issues
+                        var newSelection = selectedItems
+                        for item in items {
+                            newSelection.insert(item)
+                        }
+                        selectedItems = newSelection
                     }
                     .disabled(selectedItems.count == items.count)
                     
