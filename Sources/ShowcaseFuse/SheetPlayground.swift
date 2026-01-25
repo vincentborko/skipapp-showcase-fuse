@@ -9,6 +9,8 @@ struct SheetPlayground: View {
     @State var isSheetPresented = false
     @State var isSimpleSheetPresented = false
     @State var isDetentSheetPresented = false
+    @State var isHiddenDragIndicatorPresented = false
+    @State var isCustomCornerRadiusPresented = false
     @State var isFullScreenPresented = false
     @State var isSimpleFullScreenPresented = false
     @State var item: Item? = nil
@@ -47,6 +49,12 @@ struct SheetPlayground: View {
             Button("Present sheet with medium detent") {
                 isDetentSheetPresented = true
             }
+            Button("Present sheet with hidden drag indicator") {
+                isHiddenDragIndicatorPresented = true
+            }
+            Button("Present sheet with custom corner radius") {
+                isCustomCornerRadiusPresented = true
+            }
             Button("Present item sheet: \(itemID + 1)") {
                 itemID += 1
                 item = Item(id: itemID)
@@ -82,6 +90,30 @@ struct SheetPlayground: View {
                 isDetentSheetPresented = false
             }
             .presentationDetents([.medium])
+        })
+        .sheet(isPresented: $isHiddenDragIndicatorPresented, content: {
+            VStack(spacing: 16) {
+                Text("Sheet with hidden drag indicator")
+                    .font(.headline)
+                Text("The drag indicator pill at the top is hidden")
+                    .foregroundStyle(.secondary)
+                Button("Tap to dismiss") {
+                    isHiddenDragIndicatorPresented = false
+                }
+            }
+            .presentationDragIndicator(.hidden)
+        })
+        .sheet(isPresented: $isCustomCornerRadiusPresented, content: {
+            VStack(spacing: 16) {
+                Text("Sheet with custom corner radius")
+                    .font(.headline)
+                Text("Notice the larger corner radius (30pt)")
+                    .foregroundStyle(.secondary)
+                Button("Tap to dismiss") {
+                    isCustomCornerRadiusPresented = false
+                }
+            }
+            .presentationCornerRadius(30)
         })
         .fullScreenCover(isPresented: $isFullScreenPresented) {
             SheetContentView(dismissSheet: { isFullScreenPresented = false })
