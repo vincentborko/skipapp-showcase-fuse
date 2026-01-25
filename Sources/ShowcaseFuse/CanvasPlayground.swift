@@ -5,6 +5,8 @@ struct CanvasPlayground: View {
     @State var animationPhase: Double = 0.0
 
     var body: some View {
+        #if !SKIP
+        // Canvas is temporarily disabled for Skip due to transpilation issues
         ScrollView {
             VStack(spacing: 20) {
                 // Basic shapes and paths
@@ -213,5 +215,16 @@ struct CanvasPlayground: View {
         .toolbar {
             PlaygroundSourceLink(file: "CanvasPlayground.swift")
         }
+        #else
+        // Skip implementation - Canvas not yet supported
+        VStack {
+            Text("Canvas Drawing")
+                .font(.largeTitle)
+                .padding()
+            Text("Canvas is not yet supported in Skip")
+                .foregroundColor(.secondary)
+                .padding()
+        }
+        #endif
     }
 }
