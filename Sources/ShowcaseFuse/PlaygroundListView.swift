@@ -39,6 +39,7 @@ enum PlaygroundType: CaseIterable, View {
     case image
     case keyboard
     case keychain
+    case keyframeAnimator
     case label
     case lineSpacing
     case link
@@ -57,6 +58,7 @@ enum PlaygroundType: CaseIterable, View {
     case onSubmit
     case overlay
     case pasteboard
+    case phaseAnimator
     case picker
     case preference
     case progressView
@@ -171,6 +173,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("Keyboard", comment: "Title of Keyboard playground")
         case .keychain:
             return LocalizedStringResource("Keychain", comment: "Title of Keychain playground")
+        case .keyframeAnimator:
+            return LocalizedStringResource("KeyframeAnimator", comment: "Title of KeyframeAnimator playground")
         case .label:
             return LocalizedStringResource("Label", comment: "Title of Label playground")
         case .lineSpacing:
@@ -207,6 +211,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("Overlay", comment: "Title of Overlay playground")
         case .pasteboard:
             return LocalizedStringResource("Pasteboard", comment: "Title of Pasteboard playground")
+        case .phaseAnimator:
+            return LocalizedStringResource("PhaseAnimator", comment: "Title of PhaseAnimator playground")
         case .picker:
             return LocalizedStringResource("Picker", comment: "Title of Picker playground")
         case .preference:
@@ -370,6 +376,12 @@ enum PlaygroundType: CaseIterable, View {
             KeyboardPlayground()
         case .keychain:
             KeychainPlayground()
+        case .keyframeAnimator:
+            if #available(iOS 17.0, *) {
+                KeyframeAnimatorPlayground()
+            } else {
+                Text("KeyframeAnimator requires iOS 17.0")
+            }
         case .label:
             LabelPlayground()
         case .lineSpacing:
@@ -406,6 +418,12 @@ enum PlaygroundType: CaseIterable, View {
             OverlayPlayground()
         case .pasteboard:
             PasteboardPlayground()
+        case .phaseAnimator:
+            if #available(iOS 17.0, *) {
+                PhaseAnimatorPlayground()
+            } else {
+                Text("PhaseAnimator requires iOS 17.0")
+            }
         case .picker:
             PickerPlayground()
         case .preference:
