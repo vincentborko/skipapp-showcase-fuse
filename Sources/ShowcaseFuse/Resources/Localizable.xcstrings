@@ -482,6 +482,16 @@
     "%lld%%" : {
 
     },
+    "• %@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "• %1$@ %2$@"
+          }
+        }
+      }
+    },
     "→" : {
 
     },
@@ -1095,6 +1105,9 @@
 
     },
     "Clear" : {
+
+    },
+    "Clear Selection" : {
 
     },
     "Close" : {
@@ -2293,6 +2306,12 @@
     "No badge (count 0)" : {
 
     },
+    "No item selected" : {
+
+    },
+    "No items selected" : {
+
+    },
     "No scale" : {
 
     },
@@ -2906,6 +2925,9 @@
     "Seek to specific position (0.0 - 1.0)" : {
 
     },
+    "Select All" : {
+
+    },
     "Select Blend Mode" : {
 
     },
@@ -2913,6 +2935,12 @@
 
     },
     "Selected Image: %@" : {
+
+    },
+    "Selected Item:" : {
+
+    },
+    "Selected Items (%lld):" : {
 
     },
     "Selection: %lld" : {

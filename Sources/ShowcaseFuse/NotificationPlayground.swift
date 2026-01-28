@@ -1,6 +1,6 @@
 // Copyright 2023–2025 Skip
 import SwiftUI
-import SkipKit
+@preconcurrency import SkipKit
 import SkipNotify
 
 struct NotificationPlayground: View {
