@@ -6,6 +6,7 @@ enum ScrollViewPlaygroundType: String, CaseIterable {
     case horizontal
     case viewAligned
     case modifiers
+    case lazyVStackFill
     case readerLazyVStack
     case readerLazyHStack
     case readerList
@@ -23,6 +24,8 @@ enum ScrollViewPlaygroundType: String, CaseIterable {
             return ".viewAligned"
         case .modifiers:
             return "Modifiers"
+        case .lazyVStackFill:
+            return "LazyVStack fills viewport"
         case .readerLazyVStack:
             return "ScrollViewReader: LazyVStack"
         case .readerLazyHStack:
@@ -60,6 +63,9 @@ struct ScrollViewPlayground: View {
                     .navigationTitle($0.title)
             case .modifiers:
                 ScrollViewModifiersPlayground()
+                    .navigationTitle($0.title)
+            case .lazyVStackFill:
+                LazyVStackFillPlayground()
                     .navigationTitle($0.title)
             case .readerLazyVStack:
                 ScrollViewReaderLazyVStackPlayground()
@@ -327,6 +333,101 @@ struct ScrollViewReaderLazyHGridPlayground: View {
                 .border(.primary, width: 1)
             }
         }
+    }
+}
+
+/// Repro / regression check for the LazyVStack-inside-ScrollView fill-height fix.
+///
+/// Mirrors the real failure pattern (BesserSprechen HomeView): a `VStack` with
+/// a fixed-height header followed by a `ScrollView { LazyVStack { ... } }` that
+/// must absorb the remaining vertical space. Without the fix, the outer Box
+/// inside `ScrollView` wraps to its lazy content's height and the parent VStack's
+/// red background bleeds through under the yellow ScrollView background. With
+/// the fix, the yellow background fills all remaining vertical space and no red
+/// is visible below it.
+struct LazyVStackFillPlayground: View {
+    var body: some View {
+        VStack(spacing: 0) {
+            // Header.
+            Text("Header (fixed height)")
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.purple.opacity(0.7))
+                .foregroundStyle(.white)
+
+            // CASE A — LazyVStack. Cyan = LazyVStack drawn extent. Yellow =
+            // ScrollView drawn extent. If LazyVStack wraps content (the bug),
+            // cyan only covers the items and yellow shows below the cyan.
+            // If LazyVStack fills the ScrollView, cyan covers the whole yellow.
+            Text("A: ScrollView { LazyVStack }   cyan = LazyVStack, yellow = ScrollView")
+                .font(.caption2).padding(4)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.gray.opacity(0.3))
+            ScrollView {
+                LazyVStack(spacing: 8) {
+                    ForEach(0..<3) { i in
+                        Text("Lazy \(i)")
+                            .frame(maxWidth: .infinity)
+                            .padding(8)
+                            .background(Color.blue.opacity(0.5))
+                            .cornerRadius(6)
+                    }
+                }
+                .padding(8)
+                .background(Color.cyan)
+            }
+            .background(Color.yellow)
+
+            Color.black.frame(height: 2)
+
+            // CASE C — HomeView pattern: GeometryReader + LazyVStack with
+            // explicit .frame(minHeight: scrollGeo.size.height). Magenta =
+            // LazyVStack drawn extent. Yellow = GeometryReader background.
+            Text("C: GeometryReader { ScrollView { LazyVStack.frame(minHeight) } }   magenta = LazyVStack")
+                .font(.caption2).padding(4)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.gray.opacity(0.3))
+            GeometryReader { scrollGeo in
+                ScrollView {
+                    LazyVStack(spacing: 8) {
+                        ForEach(0..<3) { i in
+                            Text("HomeView \(i)")
+                                .frame(maxWidth: .infinity)
+                                .padding(8)
+                                .background(Color.blue.opacity(0.5))
+                                .cornerRadius(6)
+                        }
+                    }
+                    .padding(8)
+                    .frame(minHeight: scrollGeo.size.height, alignment: .top)
+                    .background(Color(red: 1.0, green: 0.0, blue: 1.0))  // magenta
+                }
+            }
+            .background(Color.yellow)
+
+            Color.black.frame(height: 2)
+
+            // CASE B — VStack (reference). Same pattern, should fill.
+            Text("B: ScrollView { VStack }   cyan = VStack, orange = ScrollView")
+                .font(.caption2).padding(4)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.gray.opacity(0.3))
+            ScrollView {
+                VStack(spacing: 8) {
+                    ForEach(0..<3) { i in
+                        Text("Plain \(i)")
+                            .frame(maxWidth: .infinity)
+                            .padding(8)
+                            .background(Color.green.opacity(0.5))
+                            .cornerRadius(6)
+                    }
+                }
+                .padding(8)
+                .background(Color.cyan)
+            }
+            .background(Color.orange)
+        }
+        .background(Color.red.opacity(0.6))
     }
 }
 

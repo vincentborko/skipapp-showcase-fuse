@@ -2,6 +2,9 @@
 import SwiftUI
 import SkipKit
 import SkipNotify
+#if canImport(UIKit)
+import UIKit
+#endif
 
 struct NotificationPlayground: View {
     @State var token: String = ""
@@ -42,7 +45,7 @@ struct NotificationPlayground: View {
             Button("Generate Push Notification Token") {
                 Task { @MainActor in
                     do {
-                        self.token = try await SkipNotify.shared.fetchNotificationToken()
+                        self.token = try await SkipNotify.shared.fetchNotificationToken(firebaseProjectNumber: "")
                         logger.log("obtained push notification token: \(self.token)")
                     } catch {
                         logger.error("error obtaining push notification token: \(error)")
