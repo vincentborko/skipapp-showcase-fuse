@@ -46,6 +46,7 @@ enum PlaygroundType: CaseIterable, View {
     case minimumScaleFactor
     case menu
     case modifier
+    case monospacedDigit
     case navigationStack
     case notification
     case observable
@@ -180,6 +181,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("Menu", comment: "Title of Menu playground")
         case .modifier:
             return LocalizedStringResource("Modifiers", comment: "Title of Modifiers playground")
+        case .monospacedDigit:
+            return LocalizedStringResource("MonospacedDigit", comment: "Title of MonospacedDigit playground")
         case .navigationStack:
             return LocalizedStringResource("NavigationStack", comment: "Title of NavigationStack playground")
         case .notification:
@@ -365,6 +368,8 @@ enum PlaygroundType: CaseIterable, View {
             MenuPlayground()
         case .modifier:
             ModifierPlayground()
+        case .monospacedDigit:
+            MonospacedDigitPlayground()
         case .navigationStack:
             NavigationStackPlayground()
         case .notification:
