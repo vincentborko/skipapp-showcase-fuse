@@ -11,7 +11,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://source.skip.tools/skip.git", from: "1.6.0"),
         .package(url: "https://source.skip.tools/skip-fuse-ui.git", from: "1.0.0"),
-        .package(url: "https://source.skip.tools/skip-av.git", "0.5.0"..<"2.0.0"),
+        .package(url: "https://source.skip.tools/skip-av.git", "0.7.1"..<"2.0.0"),
         .package(url: "https://source.skip.tools/skip-kit.git", "0.5.1"..<"2.0.0"),
         .package(url: "https://source.skip.tools/skip-sql.git", "0.12.1"..<"2.0.0"),
         .package(url: "https://source.skip.tools/skip-web.git", "0.7.2"..<"2.0.0"),
