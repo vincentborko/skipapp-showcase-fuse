@@ -86,6 +86,7 @@ enum PlaygroundType: CaseIterable, View {
     case transform
     case timer
     case transition
+    case truncationMode
     case videoPlayer
     case viewThatFits
     case webView
@@ -259,6 +260,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("Transform", comment: "Title of Transform playground")
         case .transition:
             return LocalizedStringResource("Transition", comment: "Title of Transition playground")
+        case .truncationMode:
+            return LocalizedStringResource("TruncationMode", comment: "Title of TruncationMode playground")
         case .videoPlayer:
             return LocalizedStringResource("Video Player", comment: "Title of VideoPlayer playground")
         case .viewThatFits:
@@ -442,6 +445,8 @@ enum PlaygroundType: CaseIterable, View {
             TransformPlayground()
         case .transition:
             TransitionPlayground()
+        case .truncationMode:
+            TruncationModePlayground()
         case .videoPlayer:
             VideoPlayerPlayground()
         case .viewThatFits:
