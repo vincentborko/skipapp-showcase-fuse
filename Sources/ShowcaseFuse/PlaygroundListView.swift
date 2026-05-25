@@ -82,6 +82,7 @@ enum PlaygroundType: CaseIterable, View {
     case text
     case textEditor
     case textField
+    case textSelection
     case toggle
     case toolbar
     case tracking
@@ -254,6 +255,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("TextEditor", comment: "Title of Text playground")
         case .textField:
             return LocalizedStringResource("TextField", comment: "Title of TextField playground")
+        case .textSelection:
+            return LocalizedStringResource("TextSelection", comment: "Title of TextSelection playground")
         case .timer:
             return LocalizedStringResource("Timer", comment: "Title of Timer playground")
         case .toggle:
@@ -443,6 +446,8 @@ enum PlaygroundType: CaseIterable, View {
             TextEditorPlayground()
         case .textField:
             TextFieldPlayground()
+        case .textSelection:
+            TextSelectionPlayground()
         case .timer:
             TimerPlayground()
         case .toggle:
