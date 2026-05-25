@@ -56,6 +56,7 @@ enum PlaygroundType: CaseIterable, View {
     case pasteboard
     case picker
     case preference
+    case presentationDragIndicator
     case progressView
     case redacted
     case safeArea
@@ -201,6 +202,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("Picker", comment: "Title of Picker playground")
         case .preference:
             return LocalizedStringResource("Preferences", comment: "Title of Preferences playground")
+        case .presentationDragIndicator:
+            return LocalizedStringResource("PresentationDragIndicator", comment: "Title of PresentationDragIndicator playground")
         case .progressView:
             return LocalizedStringResource("ProgressView", comment: "Title of ProgressView playground")
         case .redacted:
@@ -388,6 +391,8 @@ enum PlaygroundType: CaseIterable, View {
             PickerPlayground()
         case .preference:
             PreferencePlayground()
+        case .presentationDragIndicator:
+            PresentationDragIndicatorPlayground()
         case .progressView:
             ProgressViewPlayground()
         case .redacted:
