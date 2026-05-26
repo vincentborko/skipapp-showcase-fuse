@@ -21,6 +21,7 @@ enum PlaygroundType: CaseIterable, View {
     case disclosureGroup
     case divider
     case documentPicker
+    case dynamicTypeSize
     case environment
     case focusState
     case form
@@ -133,6 +134,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("Divider", comment: "Title of Divider playground")
         case .documentPicker:
             return LocalizedStringResource("Document and Media Pickers", comment: "Title of Document and Media Pickers playground")
+        case .dynamicTypeSize:
+            return LocalizedStringResource("DynamicTypeSize", comment: "Title of DynamicTypeSize playground")
         case .environment:
             return LocalizedStringResource("Environment", comment: "Title of Environment playground")
         case .focusState:
@@ -320,6 +323,8 @@ enum PlaygroundType: CaseIterable, View {
             DividerPlayground()
         case .documentPicker:
             DocumentPickerPlayground()
+        case .dynamicTypeSize:
+            DynamicTypeSizePlayground()
         case .environment:
             EnvironmentPlayground()
         case .focusState:
