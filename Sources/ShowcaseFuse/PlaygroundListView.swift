@@ -86,6 +86,7 @@ enum PlaygroundType: CaseIterable, View {
     case storage
     case swipeActions
     case symbol
+    case symbolEffect
 //    case table
     case tabView
     case text
@@ -272,6 +273,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("SwipeActions", comment: "Title of SwipeActions playground")
         case .symbol:
             return LocalizedStringResource("Symbol", comment: "Title of Symbol playground")
+        case .symbolEffect:
+            return LocalizedStringResource("SymbolEffect", comment: "Title of SymbolEffect playground")
 //        case .table:
 //            return LocalizedStringResource("Table")
         case .tabView:
@@ -481,6 +484,8 @@ enum PlaygroundType: CaseIterable, View {
             SwipeActionsPlayground()
         case .symbol:
             SymbolPlayground()
+        case .symbolEffect:
+            SymbolEffectPlayground()
 //        case .table:
 //            TablePlayground()
         case .tabView:
