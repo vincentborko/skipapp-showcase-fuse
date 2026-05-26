@@ -68,6 +68,7 @@ enum PlaygroundType: CaseIterable, View {
     case safeArea
     case safeAreaInset
     case scenePhase
+    case scrollBounceBehavior
     case scrollGeometry
     case scrollView
     case searchable
@@ -235,6 +236,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("SafeAreaInset", comment: "Title of SafeAreaInset playground")
         case .scenePhase:
             return LocalizedStringResource("ScenePhase", comment: "Title of ScenePhase playground")
+        case .scrollBounceBehavior:
+            return LocalizedStringResource("ScrollBounceBehavior", comment: "Title of ScrollBounceBehavior playground")
         case .scrollGeometry:
             return LocalizedStringResource("ScrollGeometry", comment: "Title of ScrollGeometry playground")
         case .scrollView:
@@ -442,6 +445,8 @@ enum PlaygroundType: CaseIterable, View {
             SafeAreaInsetPlayground()
         case .scenePhase:
             ScenePhasePlayground()
+        case .scrollBounceBehavior:
+            ScrollBounceBehaviorPlayground()
         case .scrollGeometry:
             ScrollGeometryPlayground()
         case .scrollView:
