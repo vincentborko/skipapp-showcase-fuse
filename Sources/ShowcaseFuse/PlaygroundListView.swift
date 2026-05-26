@@ -62,6 +62,7 @@ enum PlaygroundType: CaseIterable, View {
     case picker
     case preference
     case presentationDragIndicator
+    case presentationSizing
     case progressView
     case redacted
     case safeArea
@@ -222,6 +223,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("Preferences", comment: "Title of Preferences playground")
         case .presentationDragIndicator:
             return LocalizedStringResource("PresentationDragIndicator", comment: "Title of PresentationDragIndicator playground")
+        case .presentationSizing:
+            return LocalizedStringResource("PresentationSizing", comment: "Title of PresentationSizing playground")
         case .progressView:
             return LocalizedStringResource("ProgressView", comment: "Title of ProgressView playground")
         case .redacted:
@@ -427,6 +430,8 @@ enum PlaygroundType: CaseIterable, View {
             PreferencePlayground()
         case .presentationDragIndicator:
             PresentationDragIndicatorPlayground()
+        case .presentationSizing:
+            PresentationSizingPlayground()
         case .progressView:
             ProgressViewPlayground()
         case .redacted:
