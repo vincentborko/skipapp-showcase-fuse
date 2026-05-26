@@ -73,6 +73,7 @@ enum PlaygroundType: CaseIterable, View {
     case scrollBounceBehavior
     case scrollGeometry
     case scrollView
+    case scrollVisibilityChange
     case searchable
     case secureField
     case shadow
@@ -249,6 +250,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("ScrollGeometry", comment: "Title of ScrollGeometry playground")
         case .scrollView:
             return LocalizedStringResource("ScrollView", comment: "Title of ScrollView playground")
+        case .scrollVisibilityChange:
+            return LocalizedStringResource("ScrollVisibilityChange", comment: "Title of ScrollVisibilityChange playground")
         case .searchable:
             return LocalizedStringResource("Searchable", comment: "Title of Searchable playground")
         case .secureField:
@@ -464,6 +467,8 @@ enum PlaygroundType: CaseIterable, View {
             ScrollGeometryPlayground()
         case .scrollView:
             ScrollViewPlayground()
+        case .scrollVisibilityChange:
+            ScrollVisibilityChangePlayground()
         case .searchable:
             SearchablePlayground()
         case .secureField:
