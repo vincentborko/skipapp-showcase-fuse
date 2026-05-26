@@ -20,6 +20,7 @@ enum PlaygroundType: CaseIterable, View {
     case contentTransition
     case controlSize
     case datePicker
+    case defaultMinListRowHeight
     case disclosureGroup
     case divider
     case documentPicker
@@ -141,6 +142,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("ControlSize", comment: "Title of ControlSize playground")
         case .datePicker:
             return LocalizedStringResource("DatePicker", comment: "Title of DatePicker playground")
+        case .defaultMinListRowHeight:
+            return LocalizedStringResource("DefaultMinListRowHeight", comment: "Title of DefaultMinListRowHeight playground")
         case .disclosureGroup:
             return LocalizedStringResource("DisclosureGroup", comment: "Title of DisclosureGroup playground")
         case .divider:
@@ -348,6 +351,8 @@ enum PlaygroundType: CaseIterable, View {
             ControlSizePlayground()
         case .datePicker:
             DatePickerPlayground()
+        case .defaultMinListRowHeight:
+            DefaultMinListRowHeightPlayground()
         case .disclosureGroup:
             DisclosureGroupPlayground()
         case .divider:
