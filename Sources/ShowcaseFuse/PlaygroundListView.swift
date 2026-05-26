@@ -31,6 +31,7 @@ enum PlaygroundType: CaseIterable, View {
     case form
     case frame
     case geometryChange
+    case geometryGroup
     case gesture
     case geometryReader
     case gradient
@@ -167,6 +168,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("Frame", comment: "Title of Frame playground")
         case .geometryChange:
             return LocalizedStringResource("GeometryChange", comment: "Title of GeometryChange playground")
+        case .geometryGroup:
+            return LocalizedStringResource("GeometryGroup", comment: "Title of GeometryGroup playground")
         case .geometryReader:
             return LocalizedStringResource("GeometryReader", comment: "Title of GeometryReader playground")
         case .gesture:
@@ -382,6 +385,8 @@ enum PlaygroundType: CaseIterable, View {
             FramePlayground()
         case .geometryChange:
             GeometryChangePlayground()
+        case .geometryGroup:
+            GeometryGroupPlayground()
         case .geometryReader:
             GeometryReaderPlayground()
         case .gesture:
