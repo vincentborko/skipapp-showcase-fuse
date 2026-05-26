@@ -64,6 +64,7 @@ enum PlaygroundType: CaseIterable, View {
     case progressView
     case redacted
     case safeArea
+    case safeAreaInset
     case scenePhase
     case scrollGeometry
     case scrollView
@@ -223,6 +224,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("Redacted", comment: "Title of Redacted playground")
         case .safeArea:
             return LocalizedStringResource("SafeArea", comment: "Title of SafeArea playground")
+        case .safeAreaInset:
+            return LocalizedStringResource("SafeAreaInset", comment: "Title of SafeAreaInset playground")
         case .scenePhase:
             return LocalizedStringResource("ScenePhase", comment: "Title of ScenePhase playground")
         case .scrollGeometry:
@@ -422,6 +425,8 @@ enum PlaygroundType: CaseIterable, View {
             RedactedPlayground()
         case .safeArea:
             SafeAreaPlayground()
+        case .safeAreaInset:
+            SafeAreaInsetPlayground()
         case .scenePhase:
             ScenePhasePlayground()
         case .scrollGeometry:
