@@ -41,6 +41,7 @@ enum PlaygroundType: CaseIterable, View {
     case lineSpacing
     case link
     case list
+    case listRowInsets
     case localization
     case lottie
     case map
@@ -175,6 +176,8 @@ enum PlaygroundType: CaseIterable, View {
             return LocalizedStringResource("Link", comment: "Title of Link playground")
         case .list:
             return LocalizedStringResource("List", comment: "Title of List playground")
+        case .listRowInsets:
+            return LocalizedStringResource("ListRowInsets", comment: "Title of ListRowInsets playground")
         case .localization:
             return LocalizedStringResource("Localization", comment: "Title of Localization playground")
         case .lottie:
@@ -370,6 +373,8 @@ enum PlaygroundType: CaseIterable, View {
             LinkPlayground()
         case .list:
             ListPlayground()
+        case .listRowInsets:
+            ListRowInsetsPlayground()
         case .localization:
             LocalizationPlayground()
         case .lottie:
