@@ -549,9 +549,20 @@ enum PlaygroundType: CaseIterable, View {
     }
 }
 
+/// Recently added/implemented bridge playgrounds (missing-API work).
+/// Toggle "New" in the Showcase list to test just these.
+let newPlaygrounds: Set<PlaygroundType> = [
+    .contentTransition, .controlSize, .defaultMinListRowHeight, .defaultScrollAnchor,
+    .dynamicTypeSize, .geometryChange, .geometryGroup, .listRowInsets,
+    .monospacedDigit, .presentationDragIndicator, .presentationSizing, .safeAreaInset,
+    .scrollBounceBehavior, .scrollGeometry, .scrollPhaseChange, .scrollVisibilityChange,
+    .swipeActions, .symbolEffect, .textSelection, .truncationMode,
+]
+
 /// List to navigate to each playground.
 public struct PlaygroundNavigationView: View {
     @State var searchText = ""
+    @State var showOnlyNew = false
 
     public init() {
     }
@@ -559,13 +570,30 @@ public struct PlaygroundNavigationView: View {
     public var body: some View {
         NavigationStack {
             List {
-                ForEach(matchingPlaygroundTypes, id: \.self) { playground in
-                    NavigationLink(value: playground, label: { Text(playground.title) })
+                if showOnlyNew {
+                    Section(header: Text("New bridges (\(newPlaygrounds.count))")) {
+                        ForEach(matchingPlaygroundTypes, id: \.self) { playground in
+                            NavigationLink(value: playground, label: { Text(playground.title) })
+                        }
+                    }
+                } else {
+                    ForEach(matchingPlaygroundTypes, id: \.self) { playground in
+                        NavigationLink(value: playground, label: { Text(playground.title) })
+                    }
                 }
             }
             .navigationTitle(Text("Showcase"))
             .navigationDestination(for: PlaygroundType.self) {
                 $0.navigationTitle(Text($0.title))
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        showOnlyNew.toggle()
+                    } label: {
+                        Text(showOnlyNew ? "All" : "New")
+                    }
+                }
             }
             .searchable(text: $searchText)
         }
@@ -573,6 +601,10 @@ public struct PlaygroundNavigationView: View {
 
     private var matchingPlaygroundTypes: [PlaygroundType] {
         return PlaygroundType.allCases.filter { playground in
+            // Filter to only the recently added playgrounds when the toggle is on
+            if showOnlyNew && !newPlaygrounds.contains(playground) {
+                return false
+            }
             // Filter by search text
             let words = playground.title.key.split(separator: " ")
             let prefix = searchText.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
